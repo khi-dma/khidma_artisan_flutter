@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "880069600603",
+    "project_id": "khidma-109d5",
+    "storage_bucket": "khidma-109d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880069600603:android:2f28cfb70386d35dd4667e",
+        "android_client_info": {
+          "package_name": "com.example.khidma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880069600603-o1akg19htpp2pnck77qcv8a0500q9mib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.khidma",
+            "certificate_hash": "904cd90c102ba71a89634a2e425afed828113d37"
+          }
+        },
+        {
+          "client_id": "880069600603-heb15fbqmsu5staiakntahjbn5dhg28h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYBX0mOvL0FGyDfbm8-QWz4F75jNPLI6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880069600603-heb15fbqmsu5staiakntahjbn5dhg28h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "880069600603-k5hgudr3ieq8v1dgsg52s94i13oncuqc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.khidma"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880069600603:android:a5585a2886231b56d4667e",
+        "android_client_info": {
+          "package_name": "com.example.khidma_artisan_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880069600603-heb15fbqmsu5staiakntahjbn5dhg28h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYBX0mOvL0FGyDfbm8-QWz4F75jNPLI6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880069600603-heb15fbqmsu5staiakntahjbn5dhg28h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "880069600603-k5hgudr3ieq8v1dgsg52s94i13oncuqc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.khidma"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

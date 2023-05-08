@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="126" height="28" viewBox="0 0 126 28">
+  <g id="Group_39" data-name="Group 39" transform="translate(-109 -161)">
+    <line id="Line_2" data-name="Line 2" x2="49" transform="translate(147.5 174.5)" fill="none" stroke="#919191" stroke-width="1" opacity="0.408"/>
+    <g id="Group_38" data-name="Group 38" transform="translate(-14 -3)">
+      <circle id="Ellipse_7" data-name="Ellipse 7" cx="14" cy="14" r="14" transform="translate(123 164)" fill="#345aa9"/>
+    </g>
+    <g id="Group_37" data-name="Group 37" transform="translate(-12 -3)">
+      <circle id="Ellipse_9" data-name="Ellipse 9" cx="14" cy="14" r="14" transform="translate(219 164)" fill="#345aa9"/>
+      <text id="_2" data-name="2" transform="translate(228 184)" fill="#fff" font-size="17" font-family="Avenir-Book, Avenir"><tspan x="0" y="0">2</tspan></text>
+    </g>
+    <path id="fi-rr-check" d="M12.916,4.307,4.926,12.3a.578.578,0,0,1-.819,0L1.017,9.2A.578.578,0,0,0,.2,9.2h0a.578.578,0,0,0,0,.819l3.091,3.09a1.739,1.739,0,0,0,2.457,0l7.989-7.987a.578.578,0,0,0,0-.819h0a.578.578,0,0,0-.819,0Z" transform="translate(116.149 166.725)" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="102" height="99" viewBox="0 0 102 99">
+  <g id="Group_116" data-name="Group 116" transform="translate(-104 -20)">
+    <g id="Group_118" data-name="Group 118" transform="translate(-25 -50)">
+      <g id="Rectangle_168" data-name="Rectangle 168" transform="translate(129 70)" fill="rgba(246,247,247,0.57)" stroke="#707070" stroke-width="1" stroke-dasharray="6">
+        <rect width="102" height="99" rx="10" stroke="none"/>
+        <rect x="0.5" y="0.5" width="101" height="98" rx="9.5" fill="none"/>
+      </g>
+      <g id="Group_115" data-name="Group 115" transform="translate(-21 25)">
+        <g id="Ellipse_12" data-name="Ellipse 12" transform="translate(156 118)" fill="#fff" stroke="#707070" stroke-width="1">
+          <circle cx="10" cy="10" r="10" stroke="none"/>
+          <circle cx="10" cy="10" r="9.5" fill="none"/>
+        </g>
+        <g id="Group_117" data-name="Group 117" transform="translate(160.956 122.955)">
+          <rect id="Rectangle_171" data-name="Rectangle 171" width="2.347" height="9.977" rx="1.174" transform="translate(9.977 3.815) rotate(90)" fill="#6f7070"/>
+          <rect id="Rectangle_171-2" data-name="Rectangle 171" width="2.347" height="9.977" rx="1.174" transform="translate(3.815 0)" fill="#6f7070"/>
+        </g>
+      </g>
+    </g>
+    <text id="Image" transform="translate(136 107)" fill="#6f7070" font-size="13" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">Image</tspan></text>
+  </g>
+</svg>
