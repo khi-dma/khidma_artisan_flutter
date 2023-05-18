@@ -14,8 +14,10 @@ class ChatModel {
   int lastSender;
   bool readClient;
   bool readArtisan;
+  String type;
 
   ChatModel({
+    required this.type,
     required this.readArtisan,
     required this.readClient,
     required this.lastSender,
@@ -55,21 +57,46 @@ class ChatModel {
 
   factory ChatModel.fromJson(Map<String, dynamic> json) {
     return ChatModel(
-      readArtisan: json["readArtisan"],
-      lastSender: json["lastSender"],
-      nameClient: json['nameClient'],
-      nameArtisan: json['nameArtisan'],
-      phoneNumberClient: json['phoneNumberClient'],
-      phoneNumberArtisan: json['phoneNumberArtisan'],
-      picArtisan: json['picArtisan'],
-      picClient: json['picClient'],
-      titleChat: json['titleChat'],
-      uidArtisan: json['uidArtisan'],
-      uidClient: json['uidClient'],
-      uidChat: json['uidChat'],
-      lastMessage: json['lastMessage'],
+      readArtisan: json["readArtisan"]??"",
+      lastSender: json["lastSender"]??"",
+      nameClient: json['nameClient']??"",
+      nameArtisan: json['nameArtisan']??"",
+      phoneNumberClient: json['phoneNumberClient']??"",
+      phoneNumberArtisan: json['phoneNumberArtisan']??"",
+      picArtisan: json['picArtisan']??"",
+      picClient: json['picClient']??"",
+      titleChat: json['titleChat']??"",
+      uidArtisan: json['uidArtisan']??"",
+      uidClient: json['uidClient']??"",
+      uidChat: json['uidChat']??"",
+      lastMessage: json['lastMessage']??"",
       lastMessageDate: json['lastMessageDate'].toDate(),
-      readClient: json["readClient"],
+      readClient: json["readClient"]??"",
+      type: json["type"] ??"",
     );
+  }
+
+  static ChatModel notNull = ChatModel(
+    nameClient: "",
+    nameArtisan: "",
+    phoneNumberClient: -1,
+    phoneNumberArtisan: -1,
+    picArtisan: "",
+    picClient: "",
+    titleChat: "",
+    uidArtisan: "",
+    uidClient: "",
+    uidChat: "",
+    lastMessage: "",
+    lastMessageDate: DateTime.now(),
+    lastSender: -1,
+    readClient: false,
+    readArtisan: false,
+    type: '',
+  );
+
+  @override
+  String toString() {
+    return 'ChatModel{nameClient: $nameClient, nameArtisan: $nameArtisan, phoneNumberClient: $phoneNumberClient, phoneNumberArtisan: $phoneNumberArtisan, picArtisan: $picArtisan, picClient: $picClient, titleChat: $titleChat, uidArtisan: $uidArtisan, uidClient: $uidClient, uidChat: $uidChat, lastMessage: $lastMessage, lastMessageDate: $lastMessageDate, lastSender: $lastSender, readClient: $readClient, readArtisan: $readArtisan, type: $type}';
   }
 }

@@ -21,6 +21,20 @@ void snackBarModel(String title,String message, bool isError) {
     borderRadius: 5.sp,
   );
 }
+snackBarButton(String title, String label, VoidCallback function, Color color) {
+  Get.rawSnackbar(
+    borderRadius: 3.sp,
+    margin: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
+    duration: const Duration(seconds: 2),
+    message: title,
+    mainButton: TextButton(
+        onPressed: function,
+        child: Text(
+          label,
+          style: TextStyle(fontSize: 13.sp),
+        )),
+  );
+}
 
 void snackBarModelTop(String title,String message, bool isError) {
   Get.snackbar(

@@ -6,6 +6,8 @@ import '../../../data/pallete.data.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../controllers/LocalController/controller.theme.dart';
+
 class InputDateComponent extends StatelessWidget {
   TextEditingController textEditingController;
   String? Function(String?) validate;
@@ -14,27 +16,31 @@ class InputDateComponent extends StatelessWidget {
   InputDateComponent(
       {Key? key,
       required this.textEditingController,
-      required this.function,required this.validate})
+      required this.function,
+      required this.validate})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller:textEditingController ,
+      controller: textEditingController,
       validator: validate,
       onTap: () {
         Get.bottomSheet(Container(
             height: 40.h,
-            color: Colors.white,
+            color: ThemeController.backgroundColor(),
             child: Column(
               children: [
                 Expanded(
                   child: CupertinoDatePicker(
-                    maximumYear:
-                        DateTime.now().subtract(const Duration(days: 2190)).year,
+                    maximumYear: DateTime.now()
+                        .subtract(const Duration(days: 2190))
+                        .year,
                     initialDateTime:
                         DateTime.now().subtract(const Duration(days: 2190)),
-                    minimumYear:DateTime.now().subtract(const Duration(days: 29190)).year ,
+                    minimumYear: DateTime.now()
+                        .subtract(const Duration(days: 29190))
+                        .year,
                     mode: CupertinoDatePickerMode.date,
                     onDateTimeChanged: function,
                   ),
@@ -60,23 +66,27 @@ class InputDateComponent extends StatelessWidget {
       cursorColor: kPrimaryColor,
       style: TextStyle(fontSize: 10.sp, fontWeight: regular),
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 7.w,vertical: 2.3.h),
+        contentPadding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.3.h),
         hintText: "Birth date",
         labelText: "Birth date",
-        labelStyle: TextStyle(color: kGreyTextColor,fontSize: 10.5.sp),
+        labelStyle: TextStyle(color: kGreyTextColor, fontSize: 10.5.sp),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4.sp),
-            borderSide: BorderSide(color: kSecondBlueColor, width: 1.sp)),
+            borderSide: BorderSide(
+                color: ThemeController.tertiaryColor(), width: 1.sp)),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4.sp),
-            borderSide: BorderSide(color: kGreyBackColor,width: 1.sp)),
+            borderSide: BorderSide(
+                color: ThemeController.tertiaryColor(), width: 1.sp)),
         errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4.sp),
-            borderSide: BorderSide(color: Colors.redAccent,width: 0.5.sp)),
+            borderSide: BorderSide(
+                color: ThemeController.tertiaryColor(), width: 0.5.sp)),
         focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4.sp),
-            borderSide: BorderSide(color: Colors.redAccent,width: 0.5.sp)),
-        fillColor: kGreyBackColor,
+            borderSide: BorderSide(
+                color: ThemeController.tertiaryColor(), width: 0.5.sp)),
+        fillColor: ThemeController.backgroundColor(),
         filled: true,
       ),
     );

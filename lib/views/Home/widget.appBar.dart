@@ -18,7 +18,7 @@ Widget appBarHome() {
           SizedBox(
             width: 4.w,
           ),
-          iconContainerModel("chat",const ChatWidget()),
+          iconContainerModel("message",const ChatWidget()),
         ],
       )
     ],

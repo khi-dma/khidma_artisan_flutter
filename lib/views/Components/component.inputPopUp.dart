@@ -10,6 +10,7 @@ import '../../../data/font.data.dart';
 import '../../../data/pallete.data.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../controllers/LocalController/controller.theme.dart';
 import '../../controllers/authControllers/controller.signUp.dart';
 
 class InputPopUpComponent extends StatefulWidget {
@@ -56,18 +57,21 @@ class _InputDateComponentState extends State<InputPopUpComponent> {
         labelStyle: TextStyle(color: kGreyTextColor, fontSize: 10.5.sp),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4.sp),
-            borderSide: BorderSide(color: kSecondBlueColor, width: 1.sp)),
+            borderSide: BorderSide(
+                color: ThemeController.tertiaryColor(), width: 1.sp)),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4.sp),
-            borderSide: BorderSide(color: kGreyBackColor, width: 1.sp)),
+            borderSide: BorderSide(
+                color: ThemeController.tertiaryColor(), width: 1.sp)),
         errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4.sp),
-            borderSide: BorderSide(color: Colors.redAccent, width: 0.5.sp)),
+            borderSide: BorderSide(
+                color: ThemeController.tertiaryColor(), width: 0.5.sp)),
         focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4.sp),
-            borderSide: BorderSide(color: Colors.redAccent, width: 0.5.sp)),
-        fillColor: kGreyBackColor,
-        filled: true,
+            borderSide: BorderSide(
+                color: ThemeController.tertiaryColor(), width: 0.5.sp)),
+        fillColor: ThemeController.backgroundColor(),        filled: true,
       ),
     );
   }

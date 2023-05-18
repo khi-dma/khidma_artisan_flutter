@@ -7,6 +7,7 @@ import '../../constWidgets/snackBar.dart';
 import '../../data/fonc.data.dart';
 import '../../models/model.user.dart';
 import '../../services/service.profile.dart';
+import '../../views/Auth/widget.phoneNumber.dart';
 import '../../views/dialogbox/dialog.availability.dart';
 import '../LocalController/controller.local.dart';
 import '../LocalController/controller.theme.dart';
@@ -126,6 +127,13 @@ class ProfileController extends GetxController {
         LocalController.setAvailability(available.value);
        }
      }
+  }
+
+  logOut(){
+    LocalController.clear();
+    Get.deleteAll();
+    Get.offAll(()=>const LogInWidget());
+    btnController.stop();
   }
 
 

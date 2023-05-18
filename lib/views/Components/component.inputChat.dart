@@ -6,17 +6,17 @@ import 'package:sizer/sizer.dart';
 import '../../controllers/LocalController/controller.theme.dart';
 
 class InputChat extends StatelessWidget {
-  TextEditingController textEditingController;
-  VoidCallback function;
+  final TextEditingController textEditingController;
+  final VoidCallback function;
 
-  InputChat({required this.textEditingController, required this.function});
+  const InputChat({Key? key, required this.textEditingController, required this.function}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       cursorColor: kSecondBlueColor,
       controller: textEditingController,
-      style: TextStyle(fontSize: 10.sp, fontWeight: regular),
+      style: TextStyle(fontSize: 12.sp, fontWeight: regular),
       decoration: InputDecoration(
         suffixIcon: InkWell(
             onTap: function,
@@ -24,7 +24,7 @@ class InputChat extends StatelessWidget {
               Icons.send,
               color: ThemeController.tertiaryColor(),
             )),
-        contentPadding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.3.h),
+        contentPadding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.h),
         hintText: "Message",
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.transparent, width: 1.sp)),

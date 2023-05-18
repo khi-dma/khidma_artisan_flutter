@@ -9,28 +9,19 @@ import '../data/serveur.data.dart';
 import '../models/model.request.dart';
 
 class PostService {
-  static Future<General<List<PostModel>>> getPosts(int page) async {
+  static Future<General<List<PostModel>>> getPosts(int page,String search) async {
     String service = LocalController.getProfile().service.id.toString();
-    String url = utlGetPosts + "service=$service&page=$page&size=10";
+    String city = LocalController.getProfile().city.toString();
+    String municipal = LocalController.getProfile().municipal.toString();
+    String url = utlGetPosts + "service=$service&page=$page&size=10&search=$search&city=$city&municipal=$municipal";
+    print(url);
     try {
       var res = await http.get(Uri.parse(url),
           headers: {"x-access-token": LocalController.getToken()});
       if (res.statusCode == 200) {
-        List requests = [];
         List<PostModel> posts = [];
-
         var jsonData = jsonDecode(res.body);
-        requests = jsonData["requests"];
-        for (var item in jsonData["data"]) {
-          PostModel post = PostModel.fromJson(item);
-          for (var request in requests) {
-            if (request as int == post.idPost) {
-              post.requested = true;
-              break;
-            }
-          }
-          posts.add(post);
-        }
+        posts = jsonData["data"].map<PostModel>((item)=>PostModel.fromJson(item)).toList();
         return General(data: posts, haveNext: !jsonData["lastPage"]);
       }
       return General(
@@ -43,12 +34,13 @@ class PostService {
 
   static Future<General<RequestModel>> request(RequestModel request) async {
     try {
-      String url = urlAddRequest;
+      String url = urlAddRequest+"/post/"+request.idPost.toString();
       var res = await http.post(Uri.parse(url),
           headers: {"x-access-token": LocalController.getToken()},
           body: request.toJson());
       if (res.statusCode == 200) {
         var jsonData = jsonDecode(res.body);
+        print(jsonData["data"]);
         RequestModel request = RequestModel.fromJson(jsonData["data"]);
         return General(
             data: request, error: false, returnMessage: "Something went wrong");
@@ -58,6 +50,7 @@ class PostService {
           error: true,
           returnMessage: "Something went wrong");
     } catch (e) {
+      print(e);
       return General(
           data: RequestModel.notNull,
           error: true,

@@ -22,7 +22,7 @@ class HomeWidget extends StatelessWidget {
             children: [
               appBarHome(),
               SizedBox(height: 3.h),
-              searchBar(),
+              //searchBar(),
               SizedBox(height: 3.h),
               //titleSeeAll("Services",const ServiceWidget()),
             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
 import 'package:khidma_artisan_flutter/controllers/authControllers/controller.login.dart';
 import 'package:get/get.dart';
 import 'package:khidma_artisan_flutter/data/font.data.dart';
@@ -24,10 +25,13 @@ class LogInWidget extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
-            SvgPicture.asset(
-              "assets/logo/logo_khidma_artisan.svg",
+            SizedBox(
               height: 80.sp,
             ),
+            /* SvgPicture.asset(
+              "assets/logo/logo_khidma_artisan.svg",
+              height: 80.sp,
+            ),*/
             SizedBox(
               height: 4.h,
             ),
@@ -40,7 +44,10 @@ class LogInWidget extends StatelessWidget {
             ),
             Text(
               "Use your phone number to log in",
-              style: TextStyle(fontSize: 12.sp, fontWeight: medium,color: kGreyTextColor),
+              style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: medium,
+                  color: ThemeController.secondaryColor()),
             ),
             SizedBox(
               height: 6.h,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
 import 'package:khidma_artisan_flutter/data/font.data.dart';
 import 'package:khidma_artisan_flutter/data/pallete.data.dart';
 import 'package:sizer/sizer.dart';
@@ -51,7 +52,7 @@ class UploadIdentityWidget extends StatelessWidget {
                   "assets/icons/uploadImage.svg",
                   color: controller.firstImagePath.value.isEmpty
                       ? null
-                      : kSecondBlueColor,
+                      : ThemeController.primaryColor(),
                 ),
               ),
             ),
@@ -71,7 +72,7 @@ class UploadIdentityWidget extends StatelessWidget {
                   "assets/icons/uploadImage.svg",
                   color: controller.secondImagePath.value.isEmpty
                       ? null
-                      : kSecondBlueColor,
+                      : ThemeController.primaryColor(),
                 ),
               ),
             ),

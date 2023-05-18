@@ -28,8 +28,8 @@ class ChatWidget extends StatelessWidget {
                     ? emptyListWarning()
                     : ListView.separated(
                         padding: EdgeInsets.symmetric(horizontal: 2.w),
-                        itemBuilder: (context, index) =>
-                            chatWidgetModel(controller.chats[index]),
+                        itemBuilder: (context, index) => chatWidgetModel(
+                            controller.chats[index], index, controller),
                         separatorBuilder: (BuildContext context, int index) =>
                             SizedBox(height: 2.h),
                         itemCount: controller.chats.length,

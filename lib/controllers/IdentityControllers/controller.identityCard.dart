@@ -7,6 +7,7 @@ import 'package:khidma_artisan_flutter/views/Wrapper/widget.wrapper.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 import '../../constWidgets/snackBar.dart';
+import '../../views/Identity/widget.verifyIdentity.dart';
 
 class IdentityCardController extends GetxController{
   final RoundedLoadingButtonController uploadButtonController =
@@ -47,12 +48,13 @@ class IdentityCardController extends GetxController{
      snackBarModel("Success".tr, "Files uploaded", false);
    }
    uploadButtonController.stop();
+   Get.offAll(()=>const VerifyIdentity());
   }
 
   logOut()async {
     var res = await AuthService.logOut();
     if(!res.error){
-      Get.to(()=>WrapperWidget());
+      Get.offAll(()=>const WrapperWidget());
 
     }
   }

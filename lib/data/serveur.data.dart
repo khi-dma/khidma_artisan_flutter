@@ -1,6 +1,7 @@
 String baseUrl = "http://10.0.2.2:3000";
 String urlLogin  = baseUrl+"/api/artisan/login";
 String urlSignUp  = baseUrl+"/api/artisan/signup";
+String urlMe  = baseUrl+"/api/artisan/me";
 String urlUploadIdentity = baseUrl+"/api/artisan/uploadIdentity";
 String utlGetPosts = baseUrl+"/api/artisan/post?";
 String updatePicProfile =  baseUrl+"/api/artisan/updatePic";

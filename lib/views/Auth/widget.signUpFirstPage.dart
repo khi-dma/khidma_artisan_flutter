@@ -80,14 +80,14 @@ class SignUpFirstPageWidget extends StatelessWidget {
                       initialLabelIndex: 0,
                       cornerRadius: 5.sp,
                       activeFgColor: Colors.white,
-                      inactiveBgColor: Colors.grey.withOpacity(0.6),
+                      inactiveBgColor: Colors.grey.withOpacity(0.2),
                       inactiveFgColor: Colors.white,
                       totalSwitches: 2,
                       icons: const [Icons.man_rounded, Icons.woman_rounded],
                       iconSize: 30.0,
                       activeBgColors: const [
-                        [Colors.blueGrey],
-                        [Colors.blueGrey]
+                        [Color(0xff425B59)],
+                        [Color(0xff425B59)]
                       ],
                       animate: true,
                       // with just animate set to true, default curve = Curves.easeIn

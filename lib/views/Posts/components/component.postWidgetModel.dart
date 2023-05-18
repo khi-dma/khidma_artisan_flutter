@@ -7,103 +7,80 @@ import 'package:khidma_artisan_flutter/controllers/LocalController/controller.th
 import 'package:khidma_artisan_flutter/controllers/PostsControllers/controller.post.dart';
 import 'package:khidma_artisan_flutter/data/font.data.dart';
 import 'package:khidma_artisan_flutter/models/model.post.dart';
+import 'package:khidma_artisan_flutter/views/Posts/widget.request.dart';
 import 'package:sizer/sizer.dart';
 
-Widget postWidgetModel(int index, bool showSend) {
-  final controller = Get.find<PostController>();
+import '../../../controllers/PostsControllers/controller.abstractClass.dart';
+
+Widget postWidgetModel(int index, PostAbstractClassController controller) {
   PostModel post = controller.posts[index];
-
   return Card(
-    elevation: 0,
     margin: EdgeInsets.zero,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(4.sp),
-    ),
-
-    child: Padding(
-      padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 4.w),
-      child: Column(
-        children: [
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: SizedBox(
-              height: 30.sp,
-              width: 30.sp,
-              child: ClipOval(
-                child: cachedNetworkModel(post.userClient.profilePicture),
-              ),
-            ),
-            title: Text(
-              post.userClient.name,
-              style: TextStyle(fontWeight: medium, fontSize: 12.sp),
-            ),
-            subtitle: Text(
-              post.date.toString(),
-              style: TextStyle(
-                  fontSize: 10.sp, color: ThemeController.tertiaryColor()),
-            ),
-            trailing: Icon(
-              Icons.more_horiz_rounded,
-              size: 23.sp,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+    child: Column(
+      children: [
+        ListTile(
+          contentPadding: EdgeInsets.symmetric(horizontal: 2.w),
+          leading: SizedBox(
+            height: 30.sp,
+            width: 30.sp,
+            child: ClipOval(
+              child: cachedNetworkModel(post.userClient.profilePicture),
             ),
           ),
-          SizedBox(height: 0.5.h),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 1.w),
-            child: Row(
+          title: Text(
+            post.userClient.name,
+            style: TextStyle(fontWeight: medium, fontSize: 12.sp),
+          ),
+          subtitle: Text(
+            post.date.toString()+ "  - "+post.city+" "+post.municipal+"",
+            style: TextStyle(
+                fontSize: 10.sp, color: ThemeController.secondaryColor()),
+          ),
+          trailing: Icon(Icons.more_horiz_rounded,
+              size: 23.sp, color: ThemeController.secondaryColor()),
+        ),
+        InkWell(
+          onTap: () => controller.toRequest(index),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 2.w),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 60.sp,
-                  width: 70.sp,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(4.sp),
-                    child: cachedNetworkModel(post.urlPic),
-                  ),
+                Text(
+                  post.title,
+                  style: TextStyle(fontSize: 12.sp, fontWeight: regular),
                 ),
-                SizedBox(width: 3.w),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        post.title,
-                        style: TextStyle(fontSize: 13.sp, fontWeight: regular),
-                      ),
-                      Text(
-                        post.city + " ," + post.municipal,
-                        style: TextStyle(
-                            fontSize: 10.sp,
-                            color: ThemeController.tertiaryColor()),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
+                ExpandableText(
+                  post.description,
+                  expandText: 'show more',
+                  maxLines: 2,
+                  linkColor: ThemeController.secondaryColor(),
+                  animationDuration: const Duration(milliseconds: 700),
+                  animation: true,
+                  collapseOnTextTap: true,
+                  style: TextStyle(fontSize: 11.sp, fontWeight: light),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 1.4.h),
-          ExpandableText(
-            post.description,
-            expandText: 'show more',
-            maxLines: 2,
-            linkColor: ThemeController.primaryColor(),
-            animationDuration: const Duration(milliseconds: 700),
-            animation: true,
-            collapseOnTextTap: true,
-            style: TextStyle(fontSize: 9.5.sp, fontWeight: light),
-          ),
-          SizedBox(height: 1.5.h),
-          const Divider(
-            height: 0,
-          ),
-          SizedBox(height: 2.h),
-          Row(
+        ),
+        SizedBox(
+          height: 1.h,
+        ),
+        SizedBox(
+          width: double.infinity,
+          child: cachedNetworkModel(post.urlPic),
+        ),
+        SizedBox(
+          height: 2.h,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 4.w),
+          child: Row(
             children: [
               Text(
-                post.requests.toString() + " " + "requests",
+                post.requestsNumber.toString() + " " + "requests",
                 style: TextStyle(fontSize: 12.sp),
               ),
               const Spacer(),
@@ -118,23 +95,29 @@ Widget postWidgetModel(int index, bool showSend) {
                   ),
                 ),
               ),
-              Visibility(
-                visible: showSend,
+              SizedBox(width: 5.w),
+              InkWell(
+                onTap: () => controller.toRequest(index),
                 child: Row(
                   children: [
-                    SizedBox(width: 5.w),
-                    SvgPicture.asset(
-                      "assets/icons/message.svg",
-                      color: ThemeController.oppositeColor(),
-                      height: 17.sp,
+                    Obx(
+                      () => SvgPicture.asset(
+                        "assets/icons/message.svg",
+                        color: ThemeController.oppositeColor().withOpacity(
+                            post.offered || post.requested.value ? 0.3 : 1),
+                        height: 17.sp,
+                      ),
                     ),
                   ],
                 ),
               ),
             ],
-          )
-        ],
-      ),
+          ),
+        ),
+        SizedBox(
+          height: 2.h,
+        ),
+      ],
     ),
   );
 }

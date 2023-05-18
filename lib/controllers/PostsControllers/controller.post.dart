@@ -1,54 +1,113 @@
 import 'package:flutter/material.dart';
-import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
-import 'package:khidma_artisan_flutter/constWidgets/snackBar.dart';
+import 'package:khidma_artisan_flutter/controllers/LocalController/controller.local.dart';
+import 'package:khidma_artisan_flutter/controllers/PostsControllers/controller.save.dart';
 import 'package:khidma_artisan_flutter/models/model.post.dart';
 import 'package:khidma_artisan_flutter/models/model.request.dart';
 import 'package:khidma_artisan_flutter/services/service.post.dart';
-import 'package:khidma_artisan_flutter/views/Posts/widget.request.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
+import '../../models/model.offer.dart';
+import 'controller.abstractClass.dart';
 
-class PostController extends GetxController {
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  RoundedLoadingButtonController btnController =
-      RoundedLoadingButtonController();
-
+class PostController extends PostAbstractClassController {
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     scrollController.addListener(onScroll);
+    getPosts();
   }
 
   var haveNext = false;
   var error = false.obs;
-  RxList<PostModel> posts = <PostModel>[].obs;
-  int currentPostRequest = 0;
   int page = 0;
 
   void getPosts() async {
     switchState();
-    var res = await PostService.getPosts(page);
-    if (res.error) {
-      error.value = true;
-    } else {
-      error.value = false;
+    var res = await PostService.getPosts(page, search);
+    error.value = res.error;
+    if (!res.error) {
       if (page == 0) {
         posts.value = [];
       }
+      preTreatment(res.data);
       posts.addAll(res.data);
       haveNext = res.haveNext;
     }
+
     switchState();
     switchFetchingState(res.error);
   }
 
-  switchSave(int index) {
-    posts[index].saved.value = !(posts[index].saved.value);
+  preTreatment(List<PostModel> posts) {
+    final controller = SaveController();
+    for (PostModel post in posts) {
+      for (OfferModel offer in post.offers) {
+        if (offer.idArtisan.toString() ==
+            LocalController.getProfile().phoneNumber.substring(4)) {
+          post.offered = true;
+          post.offer = offer;
+          break;
+        }
+      }
+      for (RequestModel request in post.requests) {
+        if (request.idArtisan.toString() ==
+            LocalController.getProfile().phoneNumber.substring(4)) {
+          post.requested.value = true;
+          post.request = request;
+          break;
+        }
+      }
+      post.saved.value = controller.isSaved(post.idPost);
+    }
   }
 
+  ///// search
+  String search = "";
+  TextEditingController searchController = TextEditingController();
+
+  submit(String? value) {
+    //if ((searchController.text.isNotEmpty && searchController.text != search) ||
+    //   (searchController.text.isEmpty && search.isNotEmpty)) {
+    search = searchController.text;
+    page = 0;
+    getPosts();
+    //}
+  }
+
+
+  clear(){
+    search = "";
+    searchController.clear();
+    page = 0;
+    getPosts();
+  }
+
+  /////// scroll
+  final ScrollController scrollController = ScrollController();
+
+  void onScroll() {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      if (haveNext) {
+        ++page;
+        getPosts();
+      }
+    }
+  }
+
+  //// UI STATE
   var downloading = false.obs;
   var downloadingPagination = false.obs;
+
+  @override
+  switchSave(int index) {
+    posts[index].saved.value = !(posts[index].saved.value);
+    if (posts[index].saved.value) {
+      SaveController().addPost(posts[index]);
+    } else {
+      SaveController().removePost(posts[index].idPost);
+    }
+  }
 
   switchState() {
     if (page == 0) {
@@ -68,60 +127,16 @@ class PostController extends GetxController {
     }
   }
 
-  final ScrollController scrollController = ScrollController();
-
-  void onScroll() {
-    if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent) {
-      if (haveNext) {
-        ++page;
-        getPosts();
-      }
+  @override
+  void function(RequestModel request) {
+    currentPostRequest.requested.value = true;
+    currentPostRequest.request=request;
+    ++currentPostRequest.requestsNumber;
+    if (currentPostRequest.saved.isTrue) {
+      SaveController().removePost(currentPostRequest.idPost);
+      SaveController().addPost(currentPostRequest);
     }
   }
 
-  toRequest(int index) {
-    currentPostRequest = index;
-    requestController.clear();
-    Get.to(() => const RequestWidget());
-  }
 
-  //////// request
-  TextEditingController requestController = TextEditingController();
-  StringValidationCallback requestValidate = ValidationBuilder()
-      .minLength(200, 'too short')
-      .maxLength(700, 'too long')
-      .build();
-
-  var numberCharDesc = "0/500".obs;
-
-  changeRequest(String? p1) {
-    numberCharDesc.value = requestController.text.length.toString() + "/500";
-  }
-
-  Color longDescription() {
-    return requestController.text.length > 200 ||
-            requestController.text.length < 700
-        ? Colors.redAccent
-        : Colors.green;
-  }
-
-  request() async {
-    if (formKey.currentState!.validate()) {
-      btnController.stop();
-      var res = await PostService.request(RequestModel(
-          idRequest: -1,
-          idPost: posts[currentPostRequest].idPost,
-          description: requestController.text));
-      if(res.error){
-        snackBarModel("failed", "Something went wrong", true);
-      }else{
-        Get.back();
-        snackBarModel("Success", "Request sent", false);
-      }
-      btnController.stop();
-    }else{
-      btnController.stop();
-    }
-  }
 }

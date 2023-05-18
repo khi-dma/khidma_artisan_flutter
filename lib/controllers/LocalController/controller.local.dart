@@ -67,4 +67,12 @@ class LocalController extends GetxController {
   static void setAvailability(bool availability) {
     box.write("availability",availability);
   }
+
+  static void clear() {
+    setLang('');
+    setProfile('');
+    setUid('');
+    setState(-1);
+    setToken('');
+  }
 }

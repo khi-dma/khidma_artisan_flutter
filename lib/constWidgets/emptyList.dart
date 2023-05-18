@@ -11,7 +11,7 @@ Widget emptyListWarning( ) {
     child: Column(
       children: [
         SizedBox(height: 20.h,),
-        LottieBuilder.asset("assets/animation/112087-empty.json",height: 130.sp,),
+        LottieBuilder.asset("assets/animations/79572-empty-state.json",height: 130.sp,),
         Text(
           "There are no items",
           style: TextStyle(

@@ -4,10 +4,12 @@ import 'package:sizer/sizer.dart';
 
 import '../../../constWidgets/cashedNetwork.dart';
 import '../../../constWidgets/decoration.dart';
+import '../../../controllers/Chat/controller.abstractClass.dart';
 import '../../../models/model.message.dart';
 
 Widget messageWidgetModel(
-    MessageModel message, bool showPic, String otherUrl) {
+    MessageModel message, bool showPic, String otherUrl,ChatAbstractController controller) {
+  bool _isUrl = Uri.parse(message.content).isAbsolute;
   return Align(
     alignment: message.sender == 1 ? Alignment.topRight : Alignment.topLeft,
     child: Row(
@@ -45,7 +47,9 @@ Widget messageWidgetModel(
                 message.sender == 1 ? const Color(0xff425B59): const Color(0xfff1f1f1),
                 false),
             width: message.sender == 1 ? 70.w : 60.w,
-            child: Text(
+            child: _isUrl
+                ? cachedNetworkModel(message.content)
+                : Text(
               message.content,
               style: TextStyle(
                   color: message.sender == 0 ? Colors.black : Colors.white),

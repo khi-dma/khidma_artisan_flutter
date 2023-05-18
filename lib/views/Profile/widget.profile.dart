@@ -6,6 +6,7 @@ import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 
 import '../../controllers/profileControllers/controller.profilController.dart';
+import '../Components/component.button.dart';
 
 
 class ProfileWidget extends StatelessWidget {
@@ -26,6 +27,8 @@ class ProfileWidget extends StatelessWidget {
               workProfile(),
               SizedBox(height: 3.h),
               settings(),
+              SizedBox(height: 3.h),
+              animatedButton('Log out',controller.logOut, controller.btnController)
             ],
           );
         }

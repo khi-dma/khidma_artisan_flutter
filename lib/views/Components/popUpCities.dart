@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../controllers/LocalController/controller.theme.dart';
 import '../../controllers/authControllers/controller.signUp.dart';
 import '../../data/constCities.data.dart';
 
@@ -13,6 +14,7 @@ showCities(BuildContext context) {
       context: context,
       builder: (_) => StatefulBuilder(builder: (context, setState) {
             return AlertDialog(
+              backgroundColor: ThemeController.backScaffoldGroundColor(),
               insetPadding: EdgeInsets.zero,
               clipBehavior: Clip.antiAliasWithSaveLayer,
               content: Column(
@@ -37,7 +39,40 @@ showCities(BuildContext context) {
 }
 
 Widget cityWidgetModel(String city,int index) {
-  return Container(
+  return Card(
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(7.sp)
+    ),
+    child: ListTile(
+      contentPadding: EdgeInsets.only(right: 3.w),
+      leading: SizedBox(
+        width: 40.sp,
+        height: 40.sp,
+        child: Card(
+          color: ThemeController.backScaffoldGroundColor(),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(7.sp),
+
+          ),
+          child: Center(
+            child: Text(
+              (index+1).toString(),
+              style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 9.sp),
+            ),
+          ),
+        ),
+      ),
+      title: Text(
+        city,
+        style: TextStyle(
+            fontWeight: FontWeight.w600, fontSize: 10.sp),
+      ),
+    ),
+  );
+
+  /*return Container(
     margin: EdgeInsets.symmetric( horizontal: 5.w),
     padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
     decoration: BoxDecoration(
@@ -67,5 +102,5 @@ Widget cityWidgetModel(String city,int index) {
             color: Colors.black, fontWeight: FontWeight.w600, fontSize: 10.sp),
       ),
     ),
-  );
+  );*/
 }

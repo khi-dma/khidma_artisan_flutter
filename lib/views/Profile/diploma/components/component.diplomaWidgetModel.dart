@@ -23,7 +23,7 @@ Widget diplomaWidgetModel(int index) {
                     child: Hero(
                       tag: index.toString() + "diploma",
                       child: ClipRRect(
-                          borderRadius: BorderRadius.circular(7.sp),
+                          borderRadius: BorderRadius.circular(4.sp),
                           child: cachedNetworkModel(
                               controller.diplomas[index].url)),
                     )),

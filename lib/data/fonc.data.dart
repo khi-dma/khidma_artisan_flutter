@@ -21,5 +21,5 @@ Future<String> takePic(double? ratioX ,double? ratioY)async {
 
 String dateToString(String dateString){
   DateTime date = DateTime.parse(dateString);
-  return DateFormat('d MMMM y').format(date);
+  return DateFormat('d MMMM').format(date);
 }

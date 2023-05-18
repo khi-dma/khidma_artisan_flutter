@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../controllers/LocalController/controller.theme.dart';
 import '../../controllers/authControllers/controller.signUp.dart';
+import '../../data/font.data.dart';
 
 
 showCommunes(BuildContext context) {
@@ -11,6 +13,7 @@ showCommunes(BuildContext context) {
       context: context,
       builder: (_) => StatefulBuilder(builder: (context, setState) {
         return AlertDialog(
+          backgroundColor: ThemeController.backScaffoldGroundColor(),
           insetPadding: EdgeInsets.zero,
           clipBehavior: Clip.antiAliasWithSaveLayer,
           content: Column(
@@ -35,34 +38,12 @@ showCommunes(BuildContext context) {
 }
 
 Widget communeWidgetModel(String city) {
-  return Container(
-    margin: EdgeInsets.symmetric( horizontal: 5.w),
-    padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
-    decoration: BoxDecoration(
-        color: Colors.white, borderRadius: BorderRadius.circular(7.sp)),
+  return Card(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.sp)),
     child: ListTile(
-      contentPadding: EdgeInsets.only(right: 3.w),
-      /*leading: Container(
-        width: 40.sp,
-        height: 40.sp,
-        decoration: BoxDecoration(
-          color: const Color(0xffF5F7FA),
-          borderRadius: BorderRadius.circular(7.sp),
-        ),
-        child: Center(
-          child: Text(
-            (index+1).toString(),
-            style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-                fontSize: 9.sp),
-          ),
-        ),
-      ),*/
       title: Text(
         city,
-        style: TextStyle(
-            color: Colors.black, fontWeight: FontWeight.w600, fontSize: 10.sp),
+        style: TextStyle(fontWeight: regular, fontSize: 12.sp),
       ),
     ),
   );

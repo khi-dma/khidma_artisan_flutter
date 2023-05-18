@@ -8,6 +8,7 @@ import 'package:khidma_artisan_flutter/views/Profile/widget.profile.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/LocalController/controller.theme.dart';
+import '../Projects/widget.project.dart';
 
 class BottomBarWidget extends StatefulWidget {
   const BottomBarWidget({Key? key}) : super(key: key);
@@ -18,140 +19,157 @@ class BottomBarWidget extends StatefulWidget {
 
 class _BottomBarWidgetState extends State<BottomBarWidget> {
   var currentIndex = 0;
-  List screens = [const HomeWidget(), PostsWidget(), const HomeWidget(), const ProfileWidget()];
+  List<Widget> screens = [
+    const HomeWidget(),
+    PostsWidget(),
+    const ProjectsWidget(),
+    const ProfileWidget()
+  ];
   List<String> icons = [
     "home",
     "postBB",
-    "home",
+    "project",
     "profile",
   ];
 
   List<String> listOfStrings = [
     'Home',
     'Posts',
-    'Settings',
+    'Projects',
     'Account',
   ];
+
   @override
   Widget build(BuildContext context) {
     double displayWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
-        body: screens[currentIndex],
-        bottomNavigationBar: Container(
-          margin: EdgeInsets.all(displayWidth * .05),
-          height: displayWidth * .155,
-          decoration: BoxDecoration(
-            color: ThemeController.backgroundColor(),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(.1),
-                blurRadius: 30,
-                offset: const Offset(0, 10),
-              ),
-            ],
-            borderRadius: BorderRadius.circular(7.sp),
-          ),
-          child: ListView.builder(
-            itemCount: 4,
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.symmetric(horizontal: displayWidth * .02),
-            itemBuilder: (context, index) => InkWell(
-              onTap: () {
-                setState(() {
-                  currentIndex = index;
-                  HapticFeedback.lightImpact();
-                });
-              },
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              child: Stack(
-                children: [
-                  AnimatedContainer(
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.fastLinearToSlowEaseIn,
-                    width: index == currentIndex
-                        ? displayWidth * .32
-                        : displayWidth * .18,
-                    alignment: Alignment.center,
-                    child: AnimatedContainer(
-                      duration: const Duration(seconds: 1),
-                      curve: Curves.fastLinearToSlowEaseIn,
-                      height: index == currentIndex ? displayWidth * .12 : 0,
-                      width: index == currentIndex ? displayWidth * .32 : 0,
-                      decoration: BoxDecoration(
-                        color: index == currentIndex
-                            ? kPrimaryColor.withOpacity(.2)
-                            : Colors.transparent,
-                        borderRadius: BorderRadius.circular(4.sp),
-                      ),
+        resizeToAvoidBottomInset: false,
+
+        body: Stack(
+          children: [
+            screens[currentIndex],
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                margin: EdgeInsets.all(displayWidth * .05),
+                height: displayWidth * .155,
+                decoration: BoxDecoration(
+                  color: ThemeController.backgroundColor(),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.1),
+                      blurRadius: 30,
+                      offset: const Offset(0, 10),
                     ),
-                  ),
-                  AnimatedContainer(
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.fastLinearToSlowEaseIn,
-                    width: index == currentIndex
-                        ? displayWidth * .31
-                        : displayWidth * .18,
-                    alignment: Alignment.center,
+                  ],
+                  borderRadius: BorderRadius.circular(7.sp),
+                ),
+                child: ListView.builder(
+                  itemCount: 4,
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.symmetric(horizontal: displayWidth * .02),
+                  itemBuilder: (context, index) => InkWell(
+                    onTap: () {
+                      setState(() {
+                        currentIndex = index;
+                        HapticFeedback.lightImpact();
+                      });
+                    },
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
                     child: Stack(
                       children: [
-                        Row(
-                          children: [
-                            AnimatedContainer(
-                              duration: const Duration(seconds: 1),
-                              curve: Curves.fastLinearToSlowEaseIn,
-                              width:
-                                  index == currentIndex ? displayWidth * .13 : 0,
-                            ),
-                            AnimatedOpacity(
-                              opacity: index == currentIndex ? 1 : 0,
-                              duration: const Duration(seconds: 1),
-                              curve: Curves.fastLinearToSlowEaseIn,
-                              child: Text(
-                                index == currentIndex
-                                    ? listOfStrings[index]
-                                    : '',
-                                style:  TextStyle(
-                                  color: ThemeController.primaryColor(),
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            AnimatedContainer(
-                              duration: const Duration(seconds: 1),
-                              curve: Curves.fastLinearToSlowEaseIn,
-                              width:
-                                  index == currentIndex ? displayWidth * .03 : 20,
-                            ),
-                            SvgPicture.asset(
-                              "assets/icons/" + icons[index] + ".svg",
-                              height: index == 1
-                                  ? displayWidth * .063
-                                  : displayWidth * .065,
-                              width: displayWidth * .07,
+                        AnimatedContainer(
+                          duration: const Duration(seconds: 1),
+                          curve: Curves.fastLinearToSlowEaseIn,
+                          width: index == currentIndex
+                              ? displayWidth * .32
+                              : displayWidth * .18,
+                          alignment: Alignment.center,
+                          child: AnimatedContainer(
+                            duration: const Duration(seconds: 1),
+                            curve: Curves.fastLinearToSlowEaseIn,
+                            height:
+                                index == currentIndex ? displayWidth * .12 : 0,
+                            width:
+                                index == currentIndex ? displayWidth * .32 : 0,
+                            decoration: BoxDecoration(
                               color: index == currentIndex
-                                  ? ThemeController.primaryColor()
-                                  : ThemeController.secondaryColor(),
+                                  ? kPrimaryColor.withOpacity(.2)
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(4.sp),
                             ),
-                          ],
+                          ),
+                        ),
+                        AnimatedContainer(
+                          duration: const Duration(seconds: 1),
+                          curve: Curves.fastLinearToSlowEaseIn,
+                          width: index == currentIndex
+                              ? displayWidth * .31
+                              : displayWidth * .18,
+                          alignment: Alignment.center,
+                          child: Stack(
+                            children: [
+                              Row(
+                                children: [
+                                  AnimatedContainer(
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.fastLinearToSlowEaseIn,
+                                    width: index == currentIndex
+                                        ? displayWidth * .13
+                                        : 0,
+                                  ),
+                                  AnimatedOpacity(
+                                    opacity: index == currentIndex ? 1 : 0,
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.fastLinearToSlowEaseIn,
+                                    child: Text(
+                                      index == currentIndex
+                                          ? listOfStrings[index]
+                                          : '',
+                                      style: TextStyle(
+                                        color: ThemeController.primaryColor(),
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  AnimatedContainer(
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.fastLinearToSlowEaseIn,
+                                    width: index == currentIndex
+                                        ? displayWidth * .03
+                                        : 20,
+                                  ),
+                                  SvgPicture.asset(
+                                    "assets/icons/" + icons[index] + ".svg",
+                                    height: index == 1
+                                        ? displayWidth * .063
+                                        : displayWidth * .065,
+                                    width: displayWidth * .07,
+                                    color: index == currentIndex
+                                        ? ThemeController.primaryColor()
+                                        : ThemeController.secondaryColor(),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
-          ),
+            )
+          ],
         ),
       ),
     );
   }
 }
-
-

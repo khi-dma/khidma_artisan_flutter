@@ -15,7 +15,7 @@ class ChatService {
       late QuerySnapshot<Object?> data ;
       List<ChatModel> chats = [];
       if(idPost==-1){
-        data = await chatCollection.where("uidArtisan",isEqualTo: LocalController.getUid()).orderBy("lastMessageDate").get();
+        data = await chatCollection.where("uidArtisan",isEqualTo: LocalController.getUid()).orderBy("lastMessageDate",descending: true).get();
       }else{
         data = await chatCollection.where("uidArtisan",isEqualTo: LocalController.getUid()).where("idPost",isEqualTo: idPost).orderBy("lastMessageDate").get();
 

@@ -80,7 +80,7 @@ class AuthService {
       };
 
       var request = http.MultipartRequest(
-        'PUT',
+        'POST',
         Uri.parse(urlUploadIdentity),
       );
       request.headers.addAll(headers);
@@ -93,11 +93,10 @@ class AuthService {
         'files',
         filePath2,
       ));
-      var response = await request.send();
-      if (response.statusCode == 200) {
+      var res = await request.send();
+      if (res.statusCode == 200) {
         return General( data: "");
       }
-
       return General(error: true, data: "", returnMessage: "went_wrong".tr);
     } catch (e) {
       return General(error: true, data: "", returnMessage: "went_wrong".tr);
@@ -113,6 +112,23 @@ class AuthService {
     }
   }
 
+  static Future<General<String>> me()async {
+    try{
+      http.Response res = await http.get(Uri.parse(urlMe),
+          headers: {'x-access-token': LocalController.getToken()});
+      var jsonData = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        return General(
+            data: res.body,
+            exist: true,
+            state: jsonData["data"]["state"]);
+      }
+      return General( data: "",error: true);
+    }catch(e){
+      print(e);
+      return General(error: true, data: "", returnMessage: "went_wrong".tr);
+    }
+  }
 
 
 }

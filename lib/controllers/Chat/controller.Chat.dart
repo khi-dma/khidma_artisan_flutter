@@ -5,16 +5,15 @@ import '../../models/model.chat.dart';
 import '../../models/model.message.dart';
 import '../../services/service.chat.dart';
 import '../../views/Chat/widget.messages.dart';
+import 'controller.abstractClass.dart';
 
-class ChatController extends GetxController {
+class ChatController extends ChatAbstractController {
   var downloading = false.obs;
   var uploading = false.obs;
   var error = false.obs;
-  late ChatModel selectedChat;
   int idPost;
 
   List<ChatModel> chats = [];
-  TextEditingController messageController = TextEditingController();
 
   @override
   onInit() {
@@ -26,16 +25,15 @@ class ChatController extends GetxController {
 
   getChats() async {
     switchState(0);
-    var res = await ChatService.getChats(idPost);
-    if (res.error) {
-      error.value = true;
-    } else {
-      chats = res.data;
-    }
+    var res = await ChatService. getChats(idPost);
+    error.value = res.error;
+    chats=res.data;
+    chats.reversed;
     switchState(0);
   }
 
-  selectChat(ChatModel chat) {
+  @override
+  selectChat(ChatModel chat,int index) {
     selectedChat = chat;
     chats
         .where((chat) => chat.uidChat == selectedChat.uidChat)
@@ -43,7 +41,7 @@ class ChatController extends GetxController {
         .first
         .readClient = true;
     update(["chat"]);
-    Get.to(() => MessageWidget(chat: chat));
+    Get.to(() => MessageWidget(controller: this,));
   }
 
   switchState(int state) {
@@ -54,8 +52,10 @@ class ChatController extends GetxController {
     }
   }
 
+  @override
   final ScrollController scrollController = ScrollController();
 
+  @override
   addMessage() async {
     switchState(1);
     if (messageController.text.isNotEmpty) {

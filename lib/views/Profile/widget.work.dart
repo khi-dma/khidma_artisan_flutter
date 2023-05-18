@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:khidma_artisan_flutter/controllers/profileControllers/controller.profilController.dart';
 import 'package:khidma_artisan_flutter/views/Profile/Portfolio/widget.portfolio.dart';
 import 'package:khidma_artisan_flutter/views/Profile/diploma/widget.diploma.dart';
+import 'package:khidma_artisan_flutter/views/Profile/savePost/widget.savePost.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/LocalController/controller.theme.dart';
@@ -29,6 +30,11 @@ Widget workProfile() {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            listTileModel("savedPost".tr, "save", 14,
+                    () => Get.to(() => const SavedPostWidget())),
+            const Divider(
+              height: 0,
+            ),
             listTileModel("portfolio".tr, "portf", 14,
                 () => Get.to(() => const PortfolioWidget())),
             const Divider(

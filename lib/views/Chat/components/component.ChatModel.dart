@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import '../../../constWidgets/cashedNetwork.dart';
 import '../../../controllers/Chat/controller.Chat.dart';
+import '../../../controllers/Chat/controller.abstractClass.dart';
 import '../../../controllers/LocalController/controller.theme.dart';
 import '../../../data/font.data.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -9,10 +10,11 @@ import 'package:get/get.dart';
 
 import '../../../models/model.chat.dart';
 
-Widget chatWidgetModel(ChatModel chat) {
+Widget chatWidgetModel(ChatModel chat,int index,ChatAbstractController controller) {
   final controller = Get.find<ChatController>();
   final difference = timeago.format(chat.lastMessageDate,
       locale: 'fr');
+  bool readArtisan = chat.readArtisan ;
   return GetBuilder(
     init: controller,
     id: "chat",
@@ -22,9 +24,9 @@ Widget chatWidgetModel(ChatModel chat) {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6.sp),
         ),
-        color:chat.readClient ? ThemeController.backgroundColor():ThemeController.tertiaryColor(),//chat.readClient ? kGreyBackColor:Colors.black54.withOpacity(0.4),
+        color:readArtisan ? ThemeController.backgroundColor():ThemeController.tertiaryColor(),//chat.readClient ? kGreyBackColor:Colors.black54.withOpacity(0.4),
         child: ListTile(
-          onTap: ()=>controller.selectChat(chat),
+          onTap: ()=>controller.selectChat(chat,index),
           leading: SizedBox(
             height: 30.sp,
             width: 30.sp,
@@ -38,11 +40,21 @@ Widget chatWidgetModel(ChatModel chat) {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          subtitle: Text(
-            chat.lastMessage + "  - " + difference,
-            style: TextStyle(fontSize: 9.sp, color: chat.readClient ?Colors.grey:Colors.white),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
+          subtitle: Row(
+            children: [
+              Flexible(
+                child: Text(
+                  chat.lastMessage ,
+                  style: TextStyle(fontSize: 9.sp, color: readArtisan ?Colors.grey:Colors.white),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              Text(
+                "  - " + difference,
+                style: TextStyle(fontSize: 9.sp, color: readArtisan ?Colors.grey:Colors.white),
+              ),
+            ],
           ),
 
         ),
