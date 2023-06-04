@@ -15,25 +15,27 @@ class ChatModel {
   bool readClient;
   bool readArtisan;
   String type;
+  int state;
+  int preState;
 
-  ChatModel({
-    required this.type,
-    required this.readArtisan,
-    required this.readClient,
-    required this.lastSender,
-    required this.nameClient,
-    required this.nameArtisan,
-    required this.phoneNumberClient,
-    required this.phoneNumberArtisan,
-    required this.picArtisan,
-    required this.picClient,
-    required this.titleChat,
-    required this.uidArtisan,
-    required this.uidClient,
-    required this.uidChat,
-    required this.lastMessage,
-    required this.lastMessageDate,
-  });
+  ChatModel(
+      {required this.preState,required this.type,
+      required this.readArtisan,
+      required this.readClient,
+      required this.lastSender,
+      required this.nameClient,
+      required this.nameArtisan,
+      required this.phoneNumberClient,
+      required this.phoneNumberArtisan,
+      required this.picArtisan,
+      required this.picClient,
+      required this.titleChat,
+      required this.uidArtisan,
+      required this.uidClient,
+      required this.uidChat,
+      required this.lastMessage,
+      required this.lastMessageDate,
+      required this.state});
 
   Map<String, dynamic> toJson() {
     return {
@@ -52,27 +54,30 @@ class ChatModel {
       'uidChat': uidChat,
       'lastMessage': lastMessage,
       'lastMessageDate': lastMessageDate,
+      'state': state
     };
   }
 
   factory ChatModel.fromJson(Map<String, dynamic> json) {
     return ChatModel(
-      readArtisan: json["readArtisan"]??"",
-      lastSender: json["lastSender"]??"",
-      nameClient: json['nameClient']??"",
-      nameArtisan: json['nameArtisan']??"",
-      phoneNumberClient: json['phoneNumberClient']??"",
-      phoneNumberArtisan: json['phoneNumberArtisan']??"",
-      picArtisan: json['picArtisan']??"",
-      picClient: json['picClient']??"",
-      titleChat: json['titleChat']??"",
-      uidArtisan: json['uidArtisan']??"",
-      uidClient: json['uidClient']??"",
-      uidChat: json['uidChat']??"",
-      lastMessage: json['lastMessage']??"",
+      readArtisan: json["readArtisan"] ?? "",
+      lastSender: json["lastSender"] ?? "",
+      nameClient: json['nameClient'] ?? "",
+      nameArtisan: json['nameArtisan'] ?? "",
+      phoneNumberClient: json['phoneNumberClient'] ?? "",
+      phoneNumberArtisan: json['phoneNumberArtisan'] ?? "",
+      picArtisan: json['picArtisan'] ?? "",
+      picClient: json['picClient'] ?? "",
+      titleChat: json['titleChat'] ?? "",
+      uidArtisan: json['uidArtisan'] ?? "",
+      uidClient: json['uidClient'] ?? "",
+      uidChat: json['uidChat'] ?? "",
+      lastMessage: json['lastMessage'] ?? "",
       lastMessageDate: json['lastMessageDate'].toDate(),
-      readClient: json["readClient"]??"",
-      type: json["type"] ??"",
+      readClient: json["readClient"] ?? "",
+      type: json["type"] ?? "",
+      state: json["state"],
+      preState: json['preState'] ?? json["state"],
     );
   }
 
@@ -93,6 +98,7 @@ class ChatModel {
     readClient: false,
     readArtisan: false,
     type: '',
+    state: -1, preState: -1,
   );
 
   @override

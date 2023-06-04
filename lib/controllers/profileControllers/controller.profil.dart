@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 import '../../constWidgets/snackBar.dart';
+import '../../data/constCities.data.dart';
 import '../../data/fonc.data.dart';
 import '../../models/model.user.dart';
 import '../../services/service.profile.dart';
@@ -26,8 +26,51 @@ class ProfileController extends GetxController {
     firstNameController = TextEditingController(text: user.firstName);
     lastNameController = TextEditingController(text: user.lastName);
     birthDateController = TextEditingController(text: user.birthDate);
+    cityController = TextEditingController(text: user.city);
+    municipalController = TextEditingController(text: user.municipal);
+    serviceController = TextEditingController(text: user.service.name);
     sexe = user.sexe == "Homme" ? 0 : 1;
     available.value = LocalController.getAvailability();
+  }
+
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+    updated.value=false;
+    picPath.value="";
+  }
+
+  void save() async {
+    btnController.start();
+    changes();
+
+    if(picPath.value.isNotEmpty){
+      var res = await ProfileService.updatePic(picPath.value);
+      if (res.error) {
+        snackBarModel("Failed", "Something went wrong", true);
+        btnController.stop();
+        return ;
+      }else{
+        LocalController.setProfile(res.data);
+      }
+    }
+    if(modifiedData.isNotEmpty){
+      var res = await ProfileService.updateUser(modifiedData);
+      if (res.error) {
+        snackBarModel("Failed", "Something went wrong", true);
+        btnController.stop();
+        return ;
+      }else{
+        LocalController.setProfile(res.data);
+      }
+    }
+    update(["personalInformation"]);
+    user = LocalController.getProfile();
+    Get.back();
+    picPath = "".obs;
+    snackBarModel("Success", "Picture changed", false);
+    btnController.stop();
   }
 
 
@@ -36,23 +79,36 @@ class ProfileController extends GetxController {
   late UserModel user;
   late TextEditingController firstNameController;
   late TextEditingController lastNameController;
-
+  late TextEditingController cityController;
+  late TextEditingController municipalController;
   late TextEditingController birthDateController;
+  late TextEditingController serviceController;
   int sexe = 0;
 
-  final validatorFirstName = ValidationBuilder()
-      .regExp(RegExp(r'^[a-zA-Z0-9]+$'), "name must be alphabetic")
-      .maxLength(50, "please type a true name")
-      .minLength(3, "please type a true name")
-      .build();
+  int indexCity=0;
+  chooseCity(int index) {
+    Get.back();
+    cityController.text = cities[index];
+    indexCity = index + 1;
+    municipalController.text = currentCommune()[0];
+    change();
+    update();
+  }
 
-  final validatorLastName = ValidationBuilder()
-      .regExp(RegExp(r'^[a-zA-Z0-9]+$'), "name must be alphabetic")
-      .maxLength(50, "please type a true name")
-      .minLength(3, "please type a true name")
-      .build();
+  chooseCommune(int index) {
+    Get.back();
+    municipalController.text = currentCommune()[index];
+    change();
+    update();
+  }
 
-  final validatorBirthDate = ValidationBuilder().required().build();
+  currentCommune() {
+    return communes
+        .where((commune) =>
+    int.parse(commune["wilaya_code"].toString()) == indexCity)
+        .map((commune) => commune["commune_name"])
+        .toList();
+  }
 
   var modifiedData = {};
 
@@ -66,24 +122,6 @@ class ProfileController extends GetxController {
   void takePick() async {
     picPath.value = await takePic(1, 1);
   }
-
-  void save() async {
-    btnController.start();
-    var res = await ProfileService.updatePic(picPath.value);
-    if(res.error){
-      snackBarModel("Failed", "Something went wrong", true);
-    }else{
-      LocalController.setProfile(res.data);
-      user = LocalController.getProfile();
-      Get.back();
-      picPath = "".obs;
-      update(["picture"]);
-      snackBarModel("Success", "Picture changed", false);
-    }
-    btnController.stop();
-  }
-
-
 
   /////// theme
   bool verifyMood(ThemeMode mode) {
@@ -136,8 +174,24 @@ class ProfileController extends GetxController {
     btnController.stop();
   }
 
+  var updated = false.obs;
 
+  change() {
+    updated.value=false;
+    if (user.city != cityController.text ||
+        user.municipal != municipalController.text ) {
+      updated.value = true;
+    }
+  }
 
+  changes(){
+    if(user.city != cityController.text ){
+      modifiedData["city"]=cityController.text;
+    }
+    if(user.municipal != municipalController.text){
+      modifiedData["municipal"]=municipalController.text;
+    }
+  }
 
 
 }

@@ -12,13 +12,15 @@ import '../../../models/model.chat.dart';
 
 Widget chatWidgetModel(ChatModel chat,int index,ChatAbstractController controller) {
   final controller = Get.find<ChatController>();
-  final difference = timeago.format(chat.lastMessageDate,
-      locale: 'fr');
+
+  bool _isUrl = Uri.parse(chat.lastMessage).isAbsolute;
   bool readArtisan = chat.readArtisan ;
   return GetBuilder(
     init: controller,
     id: "chat",
     builder: (context) {
+      final difference = timeago.format(chat.lastMessageDate,
+          locale: 'fr');
       return Card(
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -44,7 +46,7 @@ Widget chatWidgetModel(ChatModel chat,int index,ChatAbstractController controlle
             children: [
               Flexible(
                 child: Text(
-                  chat.lastMessage ,
+                   _isUrl ? "image":chat.lastMessage ,
                   style: TextStyle(fontSize: 9.sp, color: readArtisan ?Colors.grey:Colors.white),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,

@@ -39,7 +39,7 @@ class ChatController extends ChatAbstractController {
         .where((chat) => chat.uidChat == selectedChat.uidChat)
         .toList()
         .first
-        .readClient = true;
+        .readArtisan = true;
     update(["chat"]);
     Get.to(() => MessageWidget(controller: this,));
   }
@@ -52,8 +52,6 @@ class ChatController extends ChatAbstractController {
     }
   }
 
-  @override
-  final ScrollController scrollController = ScrollController();
 
   @override
   addMessage() async {
@@ -70,12 +68,8 @@ class ChatController extends ChatAbstractController {
             .where((chat) => chat.uidChat == selectedChat.uidChat)
             .toList()
             .first
-            .lastMessage = messageController.text;
-        chats
-            .where((chat) => chat.uidChat == selectedChat.uidChat)
-            .toList()
-            .first
-            .lastMessageDate = DateTime.now();
+            ..lastMessage = messageController.text..lastMessageDate= DateTime.now();
+
         update(["chat"]);
         messageController.clear();
       }
@@ -83,15 +77,9 @@ class ChatController extends ChatAbstractController {
     switchState(1);
   }
 
+  @override
   void updateRead() async {
     await ChatService.updateRead(selectedChat.uidChat);
   }
 
-/*List<MessageModel> getMessages(AsyncSnapshot snapshot){
-    List<MessageModel> messages= snapshot.data!.docs
-        .map((doc) =>
-        MessageModel.fromJson(doc.data() as Map<String, dynamic>))
-        .toList();
-    return messages;
-  }*/
 }

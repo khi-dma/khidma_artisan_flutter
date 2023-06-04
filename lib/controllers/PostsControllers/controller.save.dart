@@ -47,7 +47,7 @@ class SaveController extends PostAbstractClassController {
         urlPic: postMap['urlPic'],
         pathPic: postMap['pathPic'],
         newRequests: postMap['newRequests'],
-        userClient: UserClient.fromJson(postMap['userClient']),
+        userClient: ClientModel.fromJson(postMap['userClient']),
         saved: RxBool(postMap['saved']),
         requested: requested.obs,
         offered: postMap['offered'],
@@ -113,7 +113,7 @@ class SaveController extends PostAbstractClassController {
     print('====');
     print(request);
     final controller = Get.find<PostController>();
-    currentPostRequest.requested.value = true;
+    currentPost.requested.value = true;
     write();
     controller.getPosts();
   }

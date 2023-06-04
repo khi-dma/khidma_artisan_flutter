@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             child: child ?? Container(),
           );
         },
-        home: const LogInWidget(),
+        home: const WrapperWidget(),
       );
     });
   }

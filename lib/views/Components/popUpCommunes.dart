@@ -4,6 +4,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../controllers/LocalController/controller.theme.dart';
 import '../../controllers/authControllers/controller.signUp.dart';
+import '../../controllers/profileControllers/controller.profil.dart';
 import '../../data/font.data.dart';
 
 
@@ -36,6 +37,37 @@ showCommunes(BuildContext context) {
         );
       }));
 }
+
+showCommunesUpdateProfile(BuildContext context) {
+  final controller = Get.find<ProfileController>();
+  showDialog(
+      context: context,
+      builder: (_) => StatefulBuilder(builder: (context, setState) {
+        return AlertDialog(
+          backgroundColor: ThemeController.backScaffoldGroundColor(),
+          insetPadding: EdgeInsets.zero,
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                height: 60.h,
+                width: 80.w,
+                child: ListView.builder(
+                    itemCount: controller.currentCommune().length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                          onTap: ()=> controller.chooseCommune(index),
+                          child:communeWidgetModel(controller.currentCommune()[index]));
+                    }),
+              )
+            ],
+          ),
+        );
+      }));
+}
+
 
 Widget communeWidgetModel(String city) {
   return Card(

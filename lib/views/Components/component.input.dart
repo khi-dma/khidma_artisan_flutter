@@ -9,29 +9,32 @@ class InputComponent extends StatelessWidget {
   final String hintText;
   final  String? label;
   final TextEditingController textEditingController;
-  final String? Function(String?) validate;
+  final String? Function(String?)? validate;
   final Function(String?)? change;
   final int maxLines;
+  final bool readOnly;
 
   const InputComponent(
       {Key? key, this.label,
+        this.readOnly=false,
       this.change,
       required this.textEditingController,
       required this.hintText,
-      required this.validate,
+       this.validate,
       this.maxLines = 1}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: readOnly,
       onChanged: change,
       maxLines: maxLines,
       validator: validate,
       cursorColor: kSecondBlueColor,
       controller: textEditingController,
-      style: TextStyle(fontSize: 10.sp, fontWeight: regular),
+      style: TextStyle(fontSize: 11.sp, fontWeight: regular,color: ThemeController.oppositeColor().withOpacity(readOnly?0.3:1)),
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.3.h),
+        contentPadding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.h),
         hintText: hintText,
         labelText: label ?? hintText,
         labelStyle: TextStyle(color: kGreyTextColor, fontSize: 12.sp),

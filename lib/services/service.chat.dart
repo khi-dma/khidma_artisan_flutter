@@ -53,4 +53,23 @@ class ChatService {
      return General(data: "", error: true);
    }
  }
+
+ static changeState(ChatModel chat,int state)async{
+    try{
+     if(state==3){
+       await chatCollection.doc(chat.uidChat).update({
+         "preState":chat.state,
+         "state":state,
+
+       });
+     }else {
+       await chatCollection.doc(chat.uidChat).update({
+         "state":state,
+       });
+     }
+     return General(data: "");
+   }catch(e){
+     return General(data: "", error: true);
+   }
+ }
 }

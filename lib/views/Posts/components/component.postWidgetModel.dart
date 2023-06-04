@@ -4,15 +4,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:khidma_artisan_flutter/constWidgets/cashedNetwork.dart';
 import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
-import 'package:khidma_artisan_flutter/controllers/PostsControllers/controller.post.dart';
 import 'package:khidma_artisan_flutter/data/font.data.dart';
 import 'package:khidma_artisan_flutter/models/model.post.dart';
-import 'package:khidma_artisan_flutter/views/Posts/widget.request.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../controllers/PostsControllers/controller.abstractClass.dart';
 
 Widget postWidgetModel(int index, PostAbstractClassController controller) {
+
   PostModel post = controller.posts[index];
   return Card(
     margin: EdgeInsets.zero,
@@ -104,7 +102,7 @@ Widget postWidgetModel(int index, PostAbstractClassController controller) {
                       () => SvgPicture.asset(
                         "assets/icons/message.svg",
                         color: ThemeController.oppositeColor().withOpacity(
-                            post.offered || post.requested.value ? 0.3 : 1),
+                            post.offered || post.requested.value  ? 0.3 : 1),
                         height: 17.sp,
                       ),
                     ),

@@ -13,10 +13,10 @@ class UserModel {
   String birthDate;
   String municipal;
   ServiceModel service;
-  bool graduated;
   bool available;
   String uidFirebase;
   String rating;
+
 
   UserModel(
       {required this.uidFirebase,
@@ -30,7 +30,6 @@ class UserModel {
       required this.birthDate,
       required this.available,
       required this.municipal,
-      required this.graduated,
       required this.service,required this.rating});
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -38,16 +37,15 @@ class UserModel {
     return UserModel(
       firstName:json['firstName'],
       lastName: json['lastName'],
-      phoneNumber:"+213" +  json['phoneNumber'].toString(),
+      phoneNumber: json['phoneNumber'].toString(),
       tokenNotification:"",
       profilePicture: json['profilePicture']??"",
       city: json['city'],
-      sexe: json['sexe']=="0"?"Homme":"Femme",
+      sexe: json['sexe']==0?"Homme":"Femme",
       birthDate: json['birthDate'].toString(),
       service: service,
       municipal: json["municipal"],
       available: json["available"],
-      graduated: json["graduate"],
       uidFirebase: LocalController.getUid(),
       rating :  (json["rating"] ?? 0).toString(),
     );
@@ -63,7 +61,6 @@ class UserModel {
     data['city'] = city;
     data['sexe'] = sexe;
     data['birthDate'] = birthDate;
-    data['graduated'] = graduated.toString();
     data["available"] = available.toString();
     data["municipal"] = municipal;
     data["service"] = service.id.toString();

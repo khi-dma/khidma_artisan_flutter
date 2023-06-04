@@ -99,7 +99,6 @@ class SignUpController extends GetxController {
         birthDate: birthDateController.text,
         lastName: lastNameController.text,
         available: true,
-        graduated: false,
         service: service,
         municipal: municipalController.text,
         rating: "",

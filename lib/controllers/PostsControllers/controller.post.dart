@@ -43,7 +43,7 @@ class PostController extends PostAbstractClassController {
     for (PostModel post in posts) {
       for (OfferModel offer in post.offers) {
         if (offer.idArtisan.toString() ==
-            LocalController.getProfile().phoneNumber.substring(4)) {
+            LocalController.getProfile().phoneNumber) {
           post.offered = true;
           post.offer = offer;
           break;
@@ -51,7 +51,7 @@ class PostController extends PostAbstractClassController {
       }
       for (RequestModel request in post.requests) {
         if (request.idArtisan.toString() ==
-            LocalController.getProfile().phoneNumber.substring(4)) {
+            LocalController.getProfile().phoneNumber) {
           post.requested.value = true;
           post.request = request;
           break;
@@ -129,12 +129,12 @@ class PostController extends PostAbstractClassController {
 
   @override
   void function(RequestModel request) {
-    currentPostRequest.requested.value = true;
-    currentPostRequest.request=request;
-    ++currentPostRequest.requestsNumber;
-    if (currentPostRequest.saved.isTrue) {
-      SaveController().removePost(currentPostRequest.idPost);
-      SaveController().addPost(currentPostRequest);
+    currentPost.requested.value = true;
+    currentPost.request=request;
+    ++currentPost.requestsNumber;
+    if (currentPost.saved.isTrue) {
+      SaveController().removePost(currentPost.idPost);
+      SaveController().addPost(currentPost);
     }
   }
 

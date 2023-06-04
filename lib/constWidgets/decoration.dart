@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
 import 'package:sizer/sizer.dart';
 
 BoxDecoration defaultDecoration(double radius, Color color,bool shadow) {
@@ -7,7 +8,7 @@ BoxDecoration defaultDecoration(double radius, Color color,bool shadow) {
     color: color,
     boxShadow: !shadow ? null :[
       BoxShadow(
-        color: Colors.grey.withOpacity(0.2),
+        color:ThemeController.isThemeDark() ?  Colors.black.withOpacity(0.3): Colors.grey.withOpacity(0.2),
         spreadRadius: 1,
         blurRadius: 9,
         offset: const Offset(0, 2), // changes position of shadow

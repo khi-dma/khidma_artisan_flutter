@@ -5,8 +5,8 @@ import 'package:khidma_artisan_flutter/views/Profile/widget.settings.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 
-import '../../controllers/profileControllers/controller.profilController.dart';
-import '../Components/component.button.dart';
+import '../../controllers/profileControllers/controller.profil.dart';
+
 
 
 class ProfileWidget extends StatelessWidget {
@@ -28,7 +28,7 @@ class ProfileWidget extends StatelessWidget {
               SizedBox(height: 3.h),
               settings(),
               SizedBox(height: 3.h),
-              animatedButton('Log out',controller.logOut, controller.btnController)
+             //x animatedButton('Log out',controller.logOut, controller.btnController)
             ],
           );
         }

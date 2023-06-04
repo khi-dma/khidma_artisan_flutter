@@ -9,11 +9,11 @@ import 'package:sizer/sizer.dart';
 import '../../controllers/LocalController/controller.theme.dart';
 
 class InputDateComponent extends StatelessWidget {
-  TextEditingController textEditingController;
-  String? Function(String?) validate;
-  Function(DateTime) function;
+  final TextEditingController textEditingController;
+  final String? Function(String?) validate;
+  final Function(DateTime) function;
 
-  InputDateComponent(
+  const InputDateComponent(
       {Key? key,
       required this.textEditingController,
       required this.function,

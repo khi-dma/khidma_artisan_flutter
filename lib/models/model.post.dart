@@ -20,7 +20,7 @@ class PostModel {
   String urlPic;
   String pathPic;
   int newRequests;
-  UserClient userClient;
+  ClientModel userClient;
   Rx<bool> saved;
   Rx<bool> requested;
   bool offered;
@@ -72,15 +72,15 @@ class PostModel {
     requests: [],
     offers: [],
     request: RequestModel.notNull,
-    userClient: UserClient.notNull,
+    userClient: ClientModel.notNull,
   );
 
   factory PostModel.fromJson(Map<String, dynamic> json) {
     return PostModel(
-      requests: json["Requests"]
+      requests:json["Requests"]==null?[]: json["Requests"]
           .map<RequestModel>((json) => RequestModel.fromJson(json))
           .toList(),
-      offers: json["Offers"]
+      offers:json["Offers"]==null?[]: json["Offers"]
           .map<OfferModel>((json) => OfferModel.fromJson(json))
           .toList(),
       idPost: json['idPost'],
@@ -90,12 +90,12 @@ class PostModel {
       municipal: json['municipal'],
       idService: json['idService'],
       idClient: json['idClient'],
-      date: dateToString(json["date"]),
+      date: dateToStringPost(json["date"]),
       requestsNumber: json['requests'],
       urlPic: json['urlPic'],
       pathPic: json['pathPic'],
       newRequests: json['newRequests'],
-      userClient: UserClient.fromJson(json['UserClient']),
+      userClient:json["UserClient"]==null?ClientModel.notNull: ClientModel.fromJson(json['UserClient']),
       requested: false.obs,
       saved: false.obs,
     );
@@ -103,6 +103,6 @@ class PostModel {
 
   @override
   String toString() {
-    return 'PostModel{requested: $requested, offered: $offered}';
+    return 'PostModel{idPost: $idPost, title: $title, description: $description, city: $city, municipal: $municipal, idService: $idService, idClient: $idClient, date: $date, requestsNumber: $requestsNumber, urlPic: $urlPic, pathPic: $pathPic, newRequests: $newRequests, userClient: $userClient, saved: $saved, requested: $requested, offered: $offered, offer: $offer, request: $request}';
   }
 }

@@ -17,7 +17,7 @@ class ThemeController {
         centerTitle: true,
         backgroundColor: Color(0XFF121212),
         titleTextStyle: TextStyle(color: Colors.white)),
-    textTheme: GoogleFonts.poppinsTextTheme().apply(bodyColor: Colors.white),
+    textTheme: GoogleFonts.montserratTextTheme().apply(bodyColor: Colors.white),
     scaffoldBackgroundColor: const Color(0XFF121212),
     brightness: Brightness.dark,
     primaryColor: const Color(0xffEFC74F),
@@ -50,7 +50,7 @@ class ThemeController {
         backgroundColor:  Color(0XFFF7F7F7),
         titleTextStyle: TextStyle(color: Colors.black)),
     iconTheme: const IconThemeData(color: Colors.black),
-    textTheme: GoogleFonts.poppinsTextTheme().apply(bodyColor: Colors.black),
+    textTheme: GoogleFonts.montserratTextTheme().apply(bodyColor: Colors.black),
     scaffoldBackgroundColor: const Color(0XFFF7F7F7),
     brightness: Brightness.light,
     primaryColor: const Color(0xffCBA029),
@@ -59,9 +59,9 @@ class ThemeController {
         brightness: Brightness.light,
         primary: const Color(0xffCBA029),
         onPrimary: const Color(0xffCBA029),
-        secondary: const Color(0xff707070).withOpacity(0.4),
+        secondary: const Color(0xff707070),
         onSecondary: const Color(0XFF707070),
-        tertiary: const Color(0xff707070),
+        tertiary: const Color(0xff707070).withOpacity(0.4),
         error:  Colors.redAccent,
         onError:Colors.redAccent,
         onBackground: const Color(0xff2D6D3B),
@@ -97,6 +97,10 @@ class ThemeController {
   static Color secondaryColor() => Theme.of(Get.context!).colorScheme.secondary;
 
   static Color tertiaryColor() => Theme.of(Get.context!).colorScheme.tertiary;
+
+  static Color greenColor() =>  const Color(0xff425B59);
+
+  static Color greenSecondColor()=> const Color(0xff00a273);
 
   static Color backgroundColor() =>
       Theme.of(Get.context!).colorScheme.background;

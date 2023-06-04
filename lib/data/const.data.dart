@@ -11,3 +11,5 @@ List<ServiceModel> services = [
 ];
 
 typedef RequestCallback =void Function(RequestModel request);
+
+typedef StringParameterFunction = void Function(String parameter);

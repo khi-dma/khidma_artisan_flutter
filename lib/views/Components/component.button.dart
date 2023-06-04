@@ -14,7 +14,7 @@ RoundedLoadingButton animatedButton(String title, VoidCallback? function,
     successColor: kGreenColor,
     height: 45.sp,
     width: 100.w,
-    color: kPrimaryColor,
+    color: color,
     disabledColor: kPrimaryColor.withOpacity(0.6),
     elevation: 0,
     borderRadius: 10.sp,
@@ -23,6 +23,27 @@ RoundedLoadingButton animatedButton(String title, VoidCallback? function,
             color: Colors.white.withOpacity(function==null ? 0.4:1), fontWeight: semiBold, fontSize: 13.sp)),
     controller: btnController,
     onPressed: function,
+  );
+}
+
+Widget buttonChat(String title, VoidCallback? function) {
+  return InkWell(
+    onTap: function,
+    child: Container(
+      height: 35.sp,
+      width: 100.w,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.sp),
+        color: Colors.grey,
+      ),
+      child: Center(
+        child: Text(title,
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: semiBold,
+                fontSize: 13.sp)),
+      ),
+    ),
   );
 }
 
@@ -59,7 +80,7 @@ Widget animatedButtonSecondary(String title, VoidCallback? function,
     borderRadius: 10.sp,
     child: Text(title,
         style: TextStyle(
-            color: kPrimaryColor, fontWeight: semiBold, fontSize: 13.sp)),
+            color: kPrimaryColor, fontSize: 13.sp)),
     controller: btnController,
     onPressed: function,
   );

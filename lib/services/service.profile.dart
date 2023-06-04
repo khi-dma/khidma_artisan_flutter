@@ -45,4 +45,21 @@ class ProfileService {
       return true;
     }
   }
+
+  static Future<General<String>> updateUser(Map modifiedData)async{
+    try{
+      String url = urlUpdateUser ;
+      http.Response res = await http.put(
+          Uri.parse(url),
+          headers: {'x-access-token': LocalController.getToken()},
+          body: modifiedData
+      );
+      if (res.statusCode == 200) {
+        return General(data: res.body);
+      }
+      return General(error: true, returnMessage: "went_wrong".tr, data: "");
+    }catch(e){
+      return General(error: true, returnMessage: "went_wrong".tr, data: "");
+    }
+  }
 }

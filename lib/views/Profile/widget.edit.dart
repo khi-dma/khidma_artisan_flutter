@@ -8,9 +8,10 @@ import 'package:get/get.dart';
 import '../../constWidgets/appBar.dart';
 import '../../constWidgets/cashedNetwork.dart';
 import '../../controllers/LocalController/controller.theme.dart';
-import '../../controllers/profileControllers/controller.profilController.dart';
+import '../../controllers/profileControllers/controller.profil.dart';
 import '../Components/component.button.dart';
 import '../Components/component.input.dart';
+import '../Components/component.inputPopUp.dart';
 
 class EditProfile extends StatelessWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -20,9 +21,10 @@ class EditProfile extends StatelessWidget {
     final controller = Get.find<ProfileController>();
     return SafeArea(
         child: Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: appBarModel("Edit profile"),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 6.w,vertical: 2.h),
+        padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
         child: Column(
           children: [
             SizedBox(height: 1.h),
@@ -67,9 +69,44 @@ class EditProfile extends StatelessWidget {
             ),
             SizedBox(height: 4.h),
             InputComponent(
-                textEditingController: TextEditingController(),
-                hintText: "",
-                validate: controller.validatorLastName),
+              textEditingController: controller.firstNameController,
+              hintText: "First name",
+              readOnly: true,
+            ),
+            SizedBox(height: 2.h),
+            InputComponent(
+              textEditingController: controller.lastNameController,
+              hintText: "Last name",
+              readOnly: true,
+            ),
+            SizedBox(height: 2.h),
+            InputComponent(
+              textEditingController: controller.birthDateController,
+              hintText: "BirthDate",
+              readOnly: true,
+            ),
+            SizedBox(height: 2.h),
+            InputPopUpComponent(
+              hint: "City",
+              textEditingController: controller.cityController,
+              edit: true,
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            GetBuilder(
+                init: controller,
+                builder: (context) {
+                  return Visibility(
+                    visible: controller.cityController.text.isNotEmpty,
+                    child: InputPopUpComponent(
+                      hint: "Commune",
+                      textEditingController: controller.municipalController,
+                      edit: true,
+                    ),
+                  );
+                }
+            ),
             const Spacer(),
             animatedButton("Save", controller.save, controller.btnController)
           ],

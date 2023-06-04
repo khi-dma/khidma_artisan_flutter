@@ -14,15 +14,17 @@ import '../../controllers/LocalController/controller.theme.dart';
 import '../../controllers/authControllers/controller.signUp.dart';
 
 class InputPopUpComponent extends StatefulWidget {
-  TextEditingController textEditingController;
-  String? Function(String?) validate;
-  String hint;
+  final TextEditingController textEditingController;
+  final String? Function(String?)? validate;
+  final String hint;
+  final bool edit;
 
-  InputPopUpComponent(
+  const InputPopUpComponent(
       {Key? key,
+        this.edit=false,
       required this.hint,
       required this.textEditingController,
-      required this.validate})
+       this.validate})
       : super(key: key);
 
   @override
@@ -30,7 +32,6 @@ class InputPopUpComponent extends StatefulWidget {
 }
 
 class _InputDateComponentState extends State<InputPopUpComponent> {
-  final controller = Get.find<SignUpController>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +42,10 @@ class _InputDateComponentState extends State<InputPopUpComponent> {
         FocusManager.instance.primaryFocus?.unfocus();
         Timer(const Duration(milliseconds: 100), () {
           widget.hint == "City"
-              ? showCities(context)
+              ? widget.edit?showCitiesUpdateProfile(context) : showCitiesSignUp(context)
               : widget.hint == "Service"
                   ? showServices(context)
-                  : showCommunes(context);
+                  : widget.edit? showCommunesUpdateProfile(context):showCommunes(context);
         });
       },
       readOnly: true,

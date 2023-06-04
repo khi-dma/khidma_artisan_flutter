@@ -11,8 +11,8 @@ import '../../views/Posts/widget.request.dart';
 import '../Chat/controller.message.dart';
 
 abstract class PostAbstractClassController extends GetxController {
-  late int currentPostRequestIndex;
-  late PostModel currentPostRequest;
+  late int currentPostIndex;
+  late PostModel currentPost;
 
   RxList<PostModel> posts = <PostModel>[].obs;
 
@@ -21,6 +21,8 @@ abstract class PostAbstractClassController extends GetxController {
   void function(RequestModel request);
 
   toRequest(int index) {
+    currentPostIndex = index;
+    currentPost = posts[index];
     if (posts[index].offered) {
       snackBarButton("Offer already sent", "Chat", () {
         Get.back();
@@ -40,11 +42,9 @@ abstract class PostAbstractClassController extends GetxController {
             ));
       }, Colors.orange);
     } else {
-      currentPostRequestIndex = index;
-      currentPostRequest = posts[index];
       Get.bottomSheet(
           RequestWidget(
-            post: currentPostRequest,
+            post: currentPost,
             function: function,
           ),
           isScrollControlled: true);

@@ -5,6 +5,7 @@ String urlMe  = baseUrl+"/api/artisan/me";
 String urlUploadIdentity = baseUrl+"/api/artisan/uploadIdentity";
 String utlGetPosts = baseUrl+"/api/artisan/post?";
 String updatePicProfile =  baseUrl+"/api/artisan/updatePic";
+String urlUpdateUser =  baseUrl+"/api/artisan/updateUser";
 String urlAddRequest = baseUrl + "/api/artisan/request";
 
 String urlGetPortFolio= baseUrl + "/api/artisan/portfolio";
@@ -19,3 +20,10 @@ String urlAddDiploma= baseUrl + "/api/artisan/diploma";
 
 
 String urlUpdateAvailability= baseUrl + "/api/artisan/availability";
+
+String utlGetProject = baseUrl+"/api/artisan/project/";
+String utlGetProjects = baseUrl+"/api/artisan/project";
+String utlPutProject = baseUrl+"/api/artisan/project/";
+String utlLaunchProject = baseUrl+"/api/artisan/project/";
+
+

@@ -5,58 +5,62 @@ import 'package:sizer/sizer.dart';
 import '../../../constWidgets/cashedNetwork.dart';
 import '../../../constWidgets/decoration.dart';
 import '../../../controllers/Chat/controller.abstractClass.dart';
+import '../../../data/fonc.data.dart';
 import '../../../models/model.message.dart';
 
 Widget messageWidgetModel(
-    MessageModel message, bool showPic, String otherUrl,ChatAbstractController controller) {
+    MessageModel message, String otherUrl,ChatAbstractController controller) {
   bool _isUrl = Uri.parse(message.content).isAbsolute;
+  String date = dateToStringMessage(message.time.toString());
+  bool showDate = false;
+  bool sender = message.sender == 1;
   return Align(
-    alignment: message.sender == 1 ? Alignment.topRight : Alignment.topLeft,
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Visibility(
-          visible: message.sender == 0,
-          child: Row(
+    alignment: sender ? Alignment.topRight : Alignment.topLeft,
+    child: StatefulBuilder(builder: (context, StateSetter setState) {
+      return InkWell(
+        onTap: () {
+          setState(() => showDate = !showDate);
+        },
+        child: SizedBox(
+          width: 70.w,
+          child: Column(
+            crossAxisAlignment:sender? CrossAxisAlignment.end:CrossAxisAlignment.start,
             children: [
-              Visibility(
-                visible: showPic,//messageBefore.sender == 0,
-                child: SizedBox(
-                  height: 30.sp,
-                  width: 30.sp,
-                  child: ClipOval(
-                    child: cachedNetworkModel(otherUrl),
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.sp)
+                ),
+                margin: EdgeInsets.zero,
+                color: sender
+                    ? const Color(0xff425B59)
+                    : const Color(0xfff1f1f1),
+                child: Padding(
+                  padding: EdgeInsets.all(_isUrl ? 4.sp : 7.sp),
+                  child: _isUrl
+                      ? ClipRRect(
+                      borderRadius: BorderRadius.circular(5.sp),
+                      child: cachedNetworkModel(message.content))
+                      : Text(
+                    message.content,
+                    style: TextStyle(
+                        color: !sender
+                            ? Colors.black
+                            : Colors.white),
                   ),
                 ),
-                replacement: SizedBox(
-                  width: 30.sp,
-                ),
               ),
-              SizedBox(
-                width: 2.w,
-              )
+              AnimatedCrossFade(
+                duration: const Duration(milliseconds: 200),
+                firstChild: Text(date),
+                secondChild: const SizedBox(),
+                crossFadeState: showDate
+                    ? CrossFadeState.showFirst
+                    : CrossFadeState.showSecond,
+              ),
             ],
           ),
         ),
-        InkWell(
-          child: Container(
-            padding: EdgeInsets.all(10.sp),
-            decoration: defaultDecoration(
-                4.sp,
-                message.sender == 1 ? const Color(0xff425B59): const Color(0xfff1f1f1),
-                false),
-            width: message.sender == 1 ? 70.w : 60.w,
-            child: _isUrl
-                ? cachedNetworkModel(message.content)
-                : Text(
-              message.content,
-              style: TextStyle(
-                  color: message.sender == 0 ? Colors.black : Colors.white),
-            ),
-          ),
-        ),
-      ],
-    ),
+      );
+    }),
   );
 }

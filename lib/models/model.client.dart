@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class UserClient {
+class ClientModel {
   String name;
   String uidFirebase;
   int phoneNumber;
@@ -9,7 +9,7 @@ class UserClient {
   String profilePicture;
 
 
-  UserClient({
+  ClientModel({
     required this.name,
     required this.uidFirebase,
     required this.phoneNumber,
@@ -19,17 +19,16 @@ class UserClient {
 
   });
 
-  static UserClient notNull = UserClient(name: "", uidFirebase: "", phoneNumber: 0, sexe: 1, birthDate: DateTime.now(), profilePicture: "");
+  static ClientModel notNull = ClientModel(name: "", uidFirebase: "", phoneNumber: 0, sexe: 1, birthDate: DateTime.now(), profilePicture: "");
 
-  factory UserClient.fromJson(Map<String, dynamic> json) {
-    return UserClient(
+  factory ClientModel.fromJson(Map<String, dynamic> json) {
+    return ClientModel(
       name: (json['lastName']?? json["name"])+" "+( json['firstName']??""),
       uidFirebase: json['uidFirebase'],
       phoneNumber: json['phoneNumber'],
       sexe: json['sexe'],
       birthDate: DateTime.parse(json['birthDate']),
       profilePicture: json['profilePicture']??"",
-
     );
   }
 

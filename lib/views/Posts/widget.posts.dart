@@ -49,17 +49,20 @@ class PostsWidget extends StatelessWidget {
                                     ),
                                 itemCount: controller.posts.length),
               ),
-              AnimatedContainer(
-                height: 3.h,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          ThemeController.backScaffoldGroundColor(),
-                      Colors.transparent
-                    ])),
-                duration: const Duration(milliseconds: 100),
+              Visibility(
+                visible: ThemeController.isThemeDark(),
+                child: AnimatedContainer(
+                  height: 3.h,
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            ThemeController.backScaffoldGroundColor(),
+                        Colors.transparent
+                      ])),
+                  duration: const Duration(milliseconds: 100),
+                ),
               ),
             ],
           ),

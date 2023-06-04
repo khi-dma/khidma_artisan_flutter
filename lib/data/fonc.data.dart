@@ -19,7 +19,25 @@ Future<String> takePic(double? ratioX ,double? ratioY)async {
 }
 
 
-String dateToString(String dateString){
+String dateToStringPost(String dateString){
   DateTime date = DateTime.parse(dateString);
   return DateFormat('d MMMM').format(date);
+}
+
+
+String dateToStringMessage(String dateString){
+  DateTime dateTime = DateTime.parse(dateString);
+  DateFormat formatter = DateFormat('h:mm a');
+  String formattedTime = formatter.format(dateTime);
+  return formattedTime;
+}
+
+String dateToStringPreProject(DateTime dateTime){
+  String formattedDateTime = DateFormat("dd MMM yyyy hh:mm a").format(dateTime);
+  return formattedDateTime;
+}
+
+String dateToStringListProject(DateTime dateTime){
+  String formattedDateTime = DateFormat("dd MMM hh:mm a").format(dateTime);
+  return formattedDateTime;
 }

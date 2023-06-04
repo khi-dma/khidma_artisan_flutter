@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:khidma_artisan_flutter/models/general.dart';
 import 'package:khidma_artisan_flutter/models/model.post.dart';
-
 import '../controllers/LocalController/controller.local.dart';
 import '../data/serveur.data.dart';
 import '../models/model.request.dart';
@@ -14,7 +12,6 @@ class PostService {
     String city = LocalController.getProfile().city.toString();
     String municipal = LocalController.getProfile().municipal.toString();
     String url = utlGetPosts + "service=$service&page=$page&size=10&search=$search&city=$city&municipal=$municipal";
-    print(url);
     try {
       var res = await http.get(Uri.parse(url),
           headers: {"x-access-token": LocalController.getToken()});

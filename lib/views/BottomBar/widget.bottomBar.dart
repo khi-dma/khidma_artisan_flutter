@@ -8,7 +8,7 @@ import 'package:khidma_artisan_flutter/views/Profile/widget.profile.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/LocalController/controller.theme.dart';
-import '../Projects/widget.project.dart';
+import '../Project/ProjectsList/widget.projectsList.dart';
 
 class BottomBarWidget extends StatefulWidget {
   const BottomBarWidget({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class _BottomBarWidgetState extends State<BottomBarWidget> {
   List<Widget> screens = [
     const HomeWidget(),
     PostsWidget(),
-    const ProjectsWidget(),
+    const ProjectListWidget(),
     const ProfileWidget()
   ];
   List<String> icons = [
