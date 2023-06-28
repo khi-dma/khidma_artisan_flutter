@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../data/fonc.data.dart';
 import 'model.client.dart';
@@ -28,8 +29,11 @@ class PostModel {
   List<RequestModel> requests;
   List<OfferModel> offers;
   RequestModel request;
+  LatLng address;
+
 
   PostModel({
+    required this.address,
     required this.offers,
     required this.requests,
     required this.idPost,
@@ -72,7 +76,7 @@ class PostModel {
     requests: [],
     offers: [],
     request: RequestModel.notNull,
-    userClient: ClientModel.notNull,
+    userClient: ClientModel.notNull, address: LatLng(0,0),
   );
 
   factory PostModel.fromJson(Map<String, dynamic> json) {
@@ -98,6 +102,11 @@ class PostModel {
       userClient:json["UserClient"]==null?ClientModel.notNull: ClientModel.fromJson(json['UserClient']),
       requested: false.obs,
       saved: false.obs,
+      address: json["address"] == null
+        ? const LatLng(0, 0)
+        : LatLng(double.parse(json["address"]["coordinates"][0].toString()),
+        double.parse(json["address"]["coordinates"][1].toString())),
+
     );
   }
 

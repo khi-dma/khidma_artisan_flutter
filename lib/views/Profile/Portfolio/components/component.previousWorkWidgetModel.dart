@@ -2,7 +2,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:khidma_artisan_flutter/constWidgets/cashedNetwork.dart';
-import 'package:khidma_artisan_flutter/controllers/profileControllers/controller.portfolio.dart';
+import 'package:khidma_artisan_flutter/controllers/profile/controller.portfolio.dart';
 import 'package:sizer/sizer.dart';
 
 import '../widget.addPreviousWork.dart';

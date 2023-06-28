@@ -7,7 +7,7 @@ import 'package:khidma_artisan_flutter/views/Posts/widget.posts.dart';
 import 'package:khidma_artisan_flutter/views/Profile/widget.profile.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../controllers/LocalController/controller.theme.dart';
+import '../../controllers/Local/controller.theme.dart';
 import '../Project/ProjectsList/widget.projectsList.dart';
 
 class BottomBarWidget extends StatefulWidget {

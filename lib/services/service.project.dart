@@ -4,7 +4,7 @@ import 'package:khidma_artisan_flutter/models/general.dart';
 import 'package:khidma_artisan_flutter/models/model.post.dart';
 import 'package:khidma_artisan_flutter/models/model.project.dart';
 
-import '../controllers/LocalController/controller.local.dart';
+import '../controllers/Local/controller.local.dart';
 import '../data/serveur.data.dart';
 
 class ProjectService {
@@ -38,9 +38,9 @@ class ProjectService {
   static Future<General<ProjectModel>> getProject(String idProject) async {
     try {
       String url = utlGetProject + idProject;
-
       var res = await http.get(Uri.parse(url),
           headers: {"x-access-token": LocalController.getToken()});
+
       if (res.statusCode == 200) {
         var jsonData = jsonDecode(res.body);
         return General(data: ProjectModel.fromJson(jsonData["data"]));
@@ -75,12 +75,33 @@ class ProjectService {
   static Future<bool> launchProject(ProjectModel project) async {
     try {
       String url = utlLaunchProject + project.id + "/launch";
+
       var res = await http.put(
         Uri.parse(url),
         headers: {
           "x-access-token": LocalController.getToken(),
         },
       );
+      if (res.statusCode == 200) {
+        return false;
+      }
+      return true;
+    } catch (e) {
+      return true;
+    }
+  }
+
+  static Future<bool> checkDemand(List<int> ids, String projectId) async {
+    try {
+      String url = urlAskCheck + projectId + "/checkDemand";
+      var body={
+        "stepsId": ids
+      };
+      var res = await http.put(Uri.parse(url), headers: {
+        "x-access-token": LocalController.getToken(),
+        "Content-Type": "application/json"
+      }, body:json.encode(body));
+
       if (res.statusCode == 200) {
         return false;
       }

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:khidma_artisan_flutter/constWidgets/emptyList.dart';
 import 'package:khidma_artisan_flutter/constWidgets/errorWidget.dart';
 import 'package:khidma_artisan_flutter/constWidgets/progressIndicator.dart';
-import 'package:khidma_artisan_flutter/controllers/projectControllers/controller.projectList.dart';
+import 'package:khidma_artisan_flutter/controllers/project/controller.projectList.dart';
 import 'package:khidma_artisan_flutter/models/model.project.dart';
 import 'package:khidma_artisan_flutter/views/Project/ProjectsList/widgets/widget.itemBuilderList.dart';
 import 'package:sizer/sizer.dart';
@@ -20,10 +20,16 @@ Widget projectsListModel() {
               ? errorWidget()
               : projects.isEmpty
                   ? emptyListWarning()
-                  : ListView.builder(
-                      padding: EdgeInsets.symmetric(horizontal: 4.w),
-                      itemCount: projects.length,
-                      itemBuilder: (context, index) => itemBuilderList(index)),
+                  : GetBuilder(
+                      init: controller,
+                      id: 'list',
+                      builder: (context) {
+                        return ListView.builder(
+                            padding: EdgeInsets.symmetric(horizontal: 4.w),
+                            itemCount: projects.length,
+                            itemBuilder: (context, index) =>
+                                itemBuilderList(index));
+                      }),
     );
   });
 }

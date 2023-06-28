@@ -3,7 +3,7 @@ import '../../../data/font.data.dart';
 import '../../../data/pallete.data.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../controllers/LocalController/controller.theme.dart';
+import '../../controllers/Local/controller.theme.dart';
 
 class InputChat extends StatelessWidget {
   final TextEditingController textEditingController;

@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 
 import '../../constWidgets/appBar.dart';
 import '../../constWidgets/cashedNetwork.dart';
-import '../../controllers/LocalController/controller.theme.dart';
-import '../../controllers/profileControllers/controller.profil.dart';
+import '../../controllers/Local/controller.theme.dart';
+import '../../controllers/profile/controller.profil.dart';
 import '../Components/component.button.dart';
 import '../Components/component.input.dart';
 import '../Components/component.inputPopUp.dart';
@@ -72,24 +72,29 @@ class EditProfile extends StatelessWidget {
               textEditingController: controller.firstNameController,
               hintText: "First name",
               readOnly: true,
+              labelShow: false,
             ),
             SizedBox(height: 2.h),
             InputComponent(
               textEditingController: controller.lastNameController,
               hintText: "Last name",
               readOnly: true,
+              labelShow: false,
+
             ),
             SizedBox(height: 2.h),
             InputComponent(
               textEditingController: controller.birthDateController,
               hintText: "BirthDate",
               readOnly: true,
+              labelShow: false,
             ),
             SizedBox(height: 2.h),
             InputPopUpComponent(
               hint: "City",
               textEditingController: controller.cityController,
               edit: true,
+              labelShow: false,
             ),
             SizedBox(
               height: 2.h,
@@ -108,7 +113,8 @@ class EditProfile extends StatelessWidget {
                 }
             ),
             const Spacer(),
-            animatedButton("Save", controller.save, controller.btnController)
+            animatedButton("Save", controller.save, controller.btnController),
+            SizedBox(height: 4.h,)
           ],
         ),
       ),

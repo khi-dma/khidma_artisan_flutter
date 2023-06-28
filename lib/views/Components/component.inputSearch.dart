@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../controllers/LocalController/controller.theme.dart';
+import '../../controllers/Local/controller.theme.dart';
 
 class InputSearchComponent extends StatefulWidget {
   final TextEditingController textEditingController;

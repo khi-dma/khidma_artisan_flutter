@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
-import 'package:khidma_artisan_flutter/controllers/authControllers/controller.login.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.theme.dart';
+import 'package:khidma_artisan_flutter/controllers/auth/controller.login.dart';
 import 'package:get/get.dart';
 import 'package:khidma_artisan_flutter/data/font.data.dart';
 import 'package:khidma_artisan_flutter/data/pallete.data.dart';
@@ -18,59 +18,59 @@ class LogInWidget extends StatelessWidget {
     final controller = Get.put(LogInController());
     return SafeArea(
         child: Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 7.w),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 10.h,
+          resizeToAvoidBottomInset: false,
+          body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 7.w),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+
+                SizedBox(
+                  height: 12.h,
+                ),
+                SvgPicture.asset(
+                  "assets/logo/logo_khidma_artisan.svg",
+                  height: 60.sp,
+                ),
+                SizedBox(
+                  height: 7.h,
+                ),
+                Text(
+                  "Welcome back",
+                  style: TextStyle(fontSize: 19.sp, fontWeight: semiBold),
+                ),
+                SizedBox(
+                  height: 0.h,
+                ),
+                Text(
+                  "Use your phone number to log in",
+                  style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: medium,
+                      color: ThemeController.secondaryColor()),
+                ),
+                SizedBox(
+                  height: 6.h,
+                ),
+                InputPhoneNumberAuth(
+                  change: controller.changePhoneNumber,
+                  textEditingController: controller.phoneNumberController,
+                ),
+                SizedBox(
+                  height: 3.h,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: Obx(() => animatedButton(
+                      "Send".tr,
+                      controller.enable.value
+                          ? () => controller.sendCode(false)
+                          : null,
+                      controller.btnController)),
+                ),
+              ],
             ),
-            SizedBox(
-              height: 80.sp,
-            ),
-            /* SvgPicture.asset(
-              "assets/logo/logo_khidma_artisan.svg",
-              height: 80.sp,
-            ),*/
-            SizedBox(
-              height: 4.h,
-            ),
-            Text(
-              "Welcome back",
-              style: TextStyle(fontSize: 19.sp, fontWeight: semiBold),
-            ),
-            SizedBox(
-              height: 0.h,
-            ),
-            Text(
-              "Use your phone number to log in",
-              style: TextStyle(
-                  fontSize: 12.sp,
-                  fontWeight: medium,
-                  color: ThemeController.secondaryColor()),
-            ),
-            SizedBox(
-              height: 6.h,
-            ),
-            InputPhoneNumberAuth(
-              change: controller.changePhoneNumber,
-              textEditingController: controller.phoneNumberController,
-            ),
-            SizedBox(
-              height: 2.h,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: Obx(() => animatedButton(
-                  "Send".tr,
-                  controller.enable.value
-                      ? () => controller.sendCode(false)
-                      : null,
-                  controller.btnController)),
-            ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 }

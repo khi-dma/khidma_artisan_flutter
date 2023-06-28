@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.theme.dart';
 import 'package:sizer/sizer.dart';
 
 import '../data/pallete.data.dart';

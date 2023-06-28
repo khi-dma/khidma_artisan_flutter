@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.theme.dart';
 import '../../../data/font.data.dart';
 import '../../../data/pallete.data.dart';
 
@@ -13,6 +13,7 @@ class InputComponent extends StatelessWidget {
   final Function(String?)? change;
   final int maxLines;
   final bool readOnly;
+  final bool labelShow;
 
   const InputComponent(
       {Key? key, this.label,
@@ -21,7 +22,7 @@ class InputComponent extends StatelessWidget {
       required this.textEditingController,
       required this.hintText,
        this.validate,
-      this.maxLines = 1}) : super(key: key);
+      this.maxLines = 1,this.labelShow=true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +33,11 @@ class InputComponent extends StatelessWidget {
       validator: validate,
       cursorColor: kSecondBlueColor,
       controller: textEditingController,
-      style: TextStyle(fontSize: 11.sp, fontWeight: regular,color: ThemeController.oppositeColor().withOpacity(readOnly?0.3:1)),
+      style: TextStyle(fontSize: 12.sp, fontWeight: regular,color: ThemeController.oppositeColor().withOpacity(readOnly?0.3:1)),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.h),
         hintText: hintText,
-        labelText: label ?? hintText,
+        labelText: labelShow ? label ?? hintText:null,
         labelStyle: TextStyle(color: kGreyTextColor, fontSize: 12.sp),
         hintStyle:TextStyle(fontSize: 12.sp, fontWeight: regular,color: ThemeController.tertiaryColor()) ,
         focusedBorder: OutlineInputBorder(

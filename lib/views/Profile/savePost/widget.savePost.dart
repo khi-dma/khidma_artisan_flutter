@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:khidma_artisan_flutter/constWidgets/appBar.dart';
 import 'package:get/get.dart';
-import 'package:khidma_artisan_flutter/controllers/PostsControllers/controller.save.dart';
+import 'package:khidma_artisan_flutter/controllers/Posts/controller.save.dart';
 import 'package:sizer/sizer.dart';
 import '../../../constWidgets/emptyList.dart';
 import '../../Posts/components/component.postWidgetModel.dart';

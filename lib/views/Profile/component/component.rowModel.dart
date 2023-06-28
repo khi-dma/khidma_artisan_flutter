@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:sizer/sizer.dart';
-import '../../../controllers/LocalController/controller.theme.dart';
+import '../../../controllers/Local/controller.theme.dart';
 import '../../../data/font.data.dart';
 
 Widget listTileModel(String title, String icon,double size,Callback function,[color]) {

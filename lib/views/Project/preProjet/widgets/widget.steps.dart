@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.theme.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../controllers/projectControllers/controller.preProject.dart';
+import '../../../../controllers/project/controller.preProject.dart';
 import '../../../dialogbox/dialog.addStep.dart';
 import '../components/component.stepWidgetModel.dart';
 
-Widget stepsWidget() {
+Widget stepsPreProjectWidget() {
   final controller = Get.find<PreProjectController>();
   return Column(
           children: [
@@ -39,7 +39,7 @@ Widget stepsWidget() {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: controller.project.steps.length,
-                itemBuilder: (context, index) => stepWidgetModel(index),
+                itemBuilder: (context, index) => stepPreProjectWidgetModel(index),
                 onReorder: controller.onChangeOrder,
               ),
             ),

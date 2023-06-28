@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khidma_artisan_flutter/views/Profile/Portfolio/widget.portfolio.dart';
+import 'package:khidma_artisan_flutter/views/Profile/available/widget.available.dart';
 import 'package:khidma_artisan_flutter/views/Profile/diploma/widget.diploma.dart';
 import 'package:khidma_artisan_flutter/views/Profile/savePost/widget.savePost.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../controllers/LocalController/controller.theme.dart';
-import '../../controllers/profileControllers/controller.profil.dart';
+import '../../controllers/Local/controller.theme.dart';
+import '../../controllers/profile/controller.profil.dart';
 import 'component/component.rowModel.dart';
 
 Widget workProfile() {
@@ -31,7 +32,7 @@ Widget workProfile() {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             listTileModel("savedPost".tr, "save", 14,
-                    () => Get.to(() => const SavedPostWidget())),
+                () => Get.to(() => const SavedPostWidget())),
             const Divider(
               height: 0,
             ),
@@ -45,14 +46,13 @@ Widget workProfile() {
             const Divider(
               height: 0,
             ),
-            Obx(
-                ()=> listTileModel(
-                  "availability".tr,
-                  "availability",
-                  9,
-                  controller.showDialog,
-                  controller.available.value ? Colors.green:Colors.red),
-            )
+            listTileModel(
+              "availability".tr,
+              "available",
+              14,
+              () => Get.to(() => const AvailableWidget()),
+            ),
+
             //Get.dialog(dialogBoxLang())),
           ],
         ),

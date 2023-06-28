@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:khidma_artisan_flutter/constWidgets/appBar.dart';
 import 'package:get/get.dart';
-import 'package:khidma_artisan_flutter/controllers/PostsControllers/controller.post.dart';
-import 'package:khidma_artisan_flutter/controllers/PostsControllers/controller.request.dart';
+import 'package:khidma_artisan_flutter/controllers/Posts/controller.request.dart';
 import 'package:khidma_artisan_flutter/models/model.post.dart';
-import 'package:khidma_artisan_flutter/models/model.request.dart';
 import 'package:khidma_artisan_flutter/views/Components/component.button.dart';
 import 'package:khidma_artisan_flutter/views/Components/component.input.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../controllers/LocalController/controller.theme.dart';
-import '../../controllers/PostsControllers/controller.abstractClass.dart';
+import '../../controllers/Local/controller.theme.dart';
 import '../../data/const.data.dart';
-import 'components/component.postWidgetModel.dart';
 
 class RequestWidget extends StatelessWidget {
   const RequestWidget({Key? key, required this.post,required this.function}) : super(key: key);

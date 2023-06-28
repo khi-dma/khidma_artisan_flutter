@@ -1,11 +1,29 @@
+import 'package:flutter/material.dart';
+
 class StepModel {
-  final int id;
-  final String title;
-  final int duration;
-  final int price;
+  int id;
+  String title;
+  int duration;
+  int price;
   DateTime endDate;
+  bool checked;
+  bool checkDemand;
+  bool late;
+
+  static StepModel notNull = StepModel(
+      endDate: DateTime.now(),
+      id: -1,
+      title: "",
+      duration: -1,
+      price: -1,
+      checkDemand: false,
+      checked: false,
+      late: false);
 
   StepModel({
+    required this.late,
+    required this.checkDemand,
+    required this.checked,
     required this.endDate,
     required this.id,
     required this.title,
@@ -15,11 +33,14 @@ class StepModel {
 
   factory StepModel.fromJson(Map<String, dynamic> json) {
     return StepModel(
-      endDate:DateTime.parse(json["endDate"]),
+      endDate: DateTime.parse(json["endDate"]),
       id: json['id'],
       title: json['title'],
       duration: json['duration'],
       price: json['price'],
+      checkDemand: json["checkDemand"],
+      checked: json["checked"],
+      late: json["late"],
     );
   }
 
@@ -33,9 +54,10 @@ class StepModel {
     };
   }
 
+
   @override
   String toString() {
-    return 'StepModel{id: $id, title: $title, duration: $duration, price: $price}';
+    return 'StepModel{id: $id, title: $title, duration: $duration, price: $price, endDate: $endDate, checked: $checked, checkDemand: $checkDemand, late: $late}';
   }
 
   @override
@@ -51,7 +73,7 @@ class StepModel {
           endDate.day == other.endDate.day &&
           endDate.month == other.endDate.month &&
           endDate.hour == other.endDate.hour &&
-          endDate.minute == other.endDate.minute ;
+          endDate.minute == other.endDate.minute;
 
   @override
   int get hashCode =>
@@ -59,5 +81,17 @@ class StepModel {
       title.hashCode ^
       duration.hashCode ^
       price.hashCode ^
-      endDate.hashCode ;
+      endDate.hashCode;
+
+  StepModel clone() {
+    return StepModel(
+        late: late,
+        checkDemand: checkDemand,
+        checked: checked,
+        endDate: endDate,
+        id: id,
+        title: title,
+        duration: duration,
+        price: price);
+  }
 }

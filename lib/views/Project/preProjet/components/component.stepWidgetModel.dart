@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
-import 'package:khidma_artisan_flutter/controllers/projectControllers/controller.preProject.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.theme.dart';
+import 'package:khidma_artisan_flutter/controllers/project/controller.preProject.dart';
 import 'package:khidma_artisan_flutter/models/model.step.dart';
 import 'package:sizer/sizer.dart';
 
-Widget stepWidgetModel(int index) {
+import '../../../../data/fonc.data.dart';
+
+Widget stepPreProjectWidgetModel(int index) {
   final controller = Get.find<PreProjectController>();
   StepModel step = controller.project.steps[index];
   return Slidable(
@@ -36,7 +38,7 @@ Widget stepWidgetModel(int index) {
           step.title,
           style: TextStyle(fontSize: 13.sp),
         ),
-        subtitle: Text("Ends in "+controller.stepEndDate(index),
+        subtitle: Text("Ends in "+dateToStringPreProject(step.endDate),
             style: TextStyle(
                 fontSize: 11.sp, color: ThemeController.secondaryColor())),
         trailing: Text(step.price.toString() + " " + "DA"),

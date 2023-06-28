@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.theme.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../constWidgets/emptyList.dart';
 import '../../constWidgets/errorWidget.dart';
 import '../../constWidgets/progressIndicator.dart';
-import '../../controllers/PostsControllers/controller.post.dart';
+import '../../controllers/Posts/controller.post.dart';
 import '../Components/component.inputSearch.dart';
 import 'components/component.postWidgetModel.dart';
 
@@ -44,8 +44,12 @@ class PostsWidget extends StatelessWidget {
                                 itemBuilder: (context, index) => Hero(
                                     tag: "post$index",
                                     child: postWidgetModel(index, controller)),
-                                separatorBuilder: (context, index) => SizedBox(
+                                separatorBuilder: (context, index) => Container(
                                       height: 2.h,
+                                      color: ThemeController.isThemeDark()
+                                          ? ThemeController.backgroundColor()
+                                          : ThemeController
+                                              .backScaffoldGroundColor(),
                                     ),
                                 itemCount: controller.posts.length),
               ),
@@ -58,7 +62,7 @@ class PostsWidget extends StatelessWidget {
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                            ThemeController.backScaffoldGroundColor(),
+                        ThemeController.backScaffoldGroundColor(),
                         Colors.transparent
                       ])),
                   duration: const Duration(milliseconds: 100),

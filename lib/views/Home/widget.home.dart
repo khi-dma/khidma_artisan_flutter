@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khidma_artisan_flutter/controllers/HomeController/controller.home.dart';
 import 'package:khidma_artisan_flutter/views/Home/widget.appBar.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../controllers/Home/controller.home.dart';
 import 'components/component.search.dart';
 import 'components/component.title.dart';
 

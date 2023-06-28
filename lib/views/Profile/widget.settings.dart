@@ -4,7 +4,7 @@ import 'package:khidma_artisan_flutter/views/dialogbox/dialog.lang.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/LocalController/controller.theme.dart';
+import '../../controllers/Local/controller.theme.dart';
 import '../dialogbox/dialog.theme.dart';
 import 'component/component.rowModel.dart';
 

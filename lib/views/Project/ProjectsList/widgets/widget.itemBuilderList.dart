@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khidma_artisan_flutter/controllers/projectControllers/controller.projectList.dart';
+import 'package:khidma_artisan_flutter/controllers/project/controller.projectList.dart';
 import 'package:get/get.dart';
 import 'package:khidma_artisan_flutter/views/Project/ProjectsList/components/component.defineWidgetModel.dart';
 import 'package:khidma_artisan_flutter/views/Project/ProjectsList/components/component.finisWidgetModel.dart';
@@ -15,13 +15,13 @@ Widget itemBuilderList(int index){
       return defineWidgetModel(index);
     }
     case(1):{
-      return progressWidgetModel(index);
-    }
-    case(3):{
       return nextWidgetModel(index);
     }
-    case(2):{
+    case(3):{
       return finishedWidgetModel(index);
+    }
+    case(2):{
+      return progressWidgetModel(index);
     }
     default:{
       return defineWidgetModel(index);

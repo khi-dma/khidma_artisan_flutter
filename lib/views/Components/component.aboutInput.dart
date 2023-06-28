@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.theme.dart';
 import '../../../data/font.data.dart';
 import '../../../data/pallete.data.dart';
 

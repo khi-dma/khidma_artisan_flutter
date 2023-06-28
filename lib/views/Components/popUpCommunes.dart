@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../controllers/LocalController/controller.theme.dart';
-import '../../controllers/authControllers/controller.signUp.dart';
-import '../../controllers/profileControllers/controller.profil.dart';
+import '../../controllers/Local/controller.theme.dart';
+import '../../controllers/auth/controller.signUp.dart';
+import '../../controllers/profile/controller.profil.dart';
 import '../../data/font.data.dart';
 
 

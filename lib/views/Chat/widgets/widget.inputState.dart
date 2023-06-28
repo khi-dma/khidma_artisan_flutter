@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/Chat/controller.abstractClass.dart';
-import '../../../controllers/LocalController/controller.theme.dart';
+import '../../../controllers/Local/controller.theme.dart';
 import '../../../models/model.chat.dart';
 import '../../../services/service.chat.dart';
 import '../../Components/component.button.dart';

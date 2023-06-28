@@ -4,8 +4,8 @@ import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 
 import '../../constWidgets/cashedNetwork.dart';
-import '../../controllers/LocalController/controller.theme.dart';
-import '../../controllers/profileControllers/controller.profil.dart';
+import '../../controllers/Local/controller.theme.dart';
+import '../../controllers/profile/controller.profil.dart';
 import '../../data/font.data.dart';
 
 Widget personalInformation() {
@@ -36,7 +36,7 @@ Widget personalInformation() {
           ),
           subtitle: Text(
             "View my profile",
-            style: TextStyle(fontSize: 10.sp,color: ThemeController.tertiaryColor()),
+            style: TextStyle(fontSize: 10.sp,color: ThemeController.secondaryColor()),
           ),
           trailing: Icon(Icons.arrow_forward_ios_rounded,size: 14.sp,),
         );

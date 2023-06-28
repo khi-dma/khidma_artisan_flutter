@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:khidma_artisan_flutter/controllers/projectControllers/controller.preProject.dart';
+import 'package:khidma_artisan_flutter/controllers/project/controller.preProject.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 
-import '../../../../controllers/LocalController/controller.theme.dart';
+import '../../../../controllers/Local/controller.theme.dart';
+import '../../../../data/fonc.data.dart';
 import '../components/component.rowModel.dart';
 
-Widget projectDetails() {
+Widget preProjectDetails() {
   final controller = Get.find<PreProjectController>();
 
   return Column(
@@ -37,17 +38,16 @@ Widget projectDetails() {
               rowModel("Title", controller.project.post.title, null),
               rowModel("Price", controller.project.price.toString() + " DA",
                   controller.stepsEnabled ? null : controller.updatePrice),
-              rowModel("Starts in", controller.startDate, () {
-                controller.updateDates(true);
-              }),
+              rowModel(
+                  "Starts in",
+                  dateToStringPreProject(controller.project.startDate),
+                  () => controller.updateDates(true)),
               rowModel(
                   "Ends in",
-                  controller.endDate,
+                  dateToStringPreProject(controller.project.endDate),
                   controller.stepsEnabled
                       ? null
-                      : () {
-                          controller.updateDates(false);
-                        }),
+                      : () => controller.updateDates(false)),
             ],
           ),
         ),

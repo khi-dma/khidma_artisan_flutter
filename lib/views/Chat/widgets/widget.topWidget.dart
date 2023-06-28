@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:khidma_artisan_flutter/models/model.project.dart';
+import 'package:khidma_artisan_flutter/views/Project/ProgressProject/widget.progressProject.dart';
 
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 import '../../../controllers/Chat/controller.abstractClass.dart';
-import '../../../controllers/LocalController/controller.theme.dart';
+import '../../../controllers/Local/controller.theme.dart';
 import '../../../models/model.chat.dart';
 import '../../../services/service.chat.dart';
 import '../../Components/component.button.dart';
@@ -58,33 +59,30 @@ Widget topWidgetChat(ChatModel chat, ChatAbstractController controller) {
                 SizedBox(width: 3.w),
                 Expanded(
                     child: buttonChat(
-                        "REFUSE", () => ChatService.changeState(chat, 6))),
+                        "ACCEPT", () => ChatService.changeState(chat, 6))),
               ],
             ),
           ],
         ),
       );
     case 6:
-      {
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
-          color: ThemeController.backgroundColor(),
-          width: 100.w,
-          child: Column(
-            children: [
-              //Text(chat.nameArtisan + " wait for response"),
-              SizedBox(
-                height: 2.h,
-              ),
-              buttonChat(
-                  "SEE PROJECT DETAILS",
-                  () => Get.to(() => PreProjectWidget(
-                      project: ProjectModel.notNull..id=chat.uidChat,
-                      )))
-            ],
-          ),
-        );
-      }
+
+    case 8:
+      return Container(
+        padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 4.w),
+        color: ThemeController.backgroundColor(),
+        width: 100.w,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 2.h,
+            ),
+            buttonChat(
+                "SEE PROJECT PROGRESS",
+                    controller.toDetailsProject)
+          ],
+        ),
+      );
     default:
       return const SizedBox();
   }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khidma_artisan_flutter/controllers/projectControllers/controller.preProject.dart';
+import 'package:khidma_artisan_flutter/controllers/project/controller.preProject.dart';
 import 'package:khidma_artisan_flutter/views/Components/component.button.dart';
 import 'package:khidma_artisan_flutter/views/Project/preProjet/components/component.rowModel.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../controllers/LocalController/controller.theme.dart';
+import '../../controllers/Local/controller.theme.dart';
 import '../Components/component.input.dart';
 
 Widget dialogAddStep() {

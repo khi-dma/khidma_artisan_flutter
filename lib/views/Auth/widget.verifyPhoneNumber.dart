@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
-import 'package:khidma_artisan_flutter/controllers/authControllers/controller.login.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.theme.dart';
+import 'package:khidma_artisan_flutter/controllers/auth/controller.login.dart';
 import 'package:khidma_artisan_flutter/data/pallete.data.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
@@ -29,36 +30,15 @@ class _VerifyPhoneNumberWidgetState extends State<VerifyPhoneNumberWidget> {
             padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 7.w),
             child: Column(children: [
               SizedBox(
-                height: 5.h,
+                height: 3.h,
               ),
               Align(
-                alignment: Alignment.topLeft,
-                child: InkWell(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.15),
-                          spreadRadius: 0.1,
-                          blurRadius: 10,
-                          offset: Offset(0, 1), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    child: SvgPicture.asset(
-                      'assets/icons/back.svg',
-                      height: 35.sp,
-                      width: 35.sp,
-                    ),
-                  ),
-                ),
-              ),
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                    onPressed: () => Get.back(), icon: Icon(Icons.arrow_back),
+                  )),
               SizedBox(
-                height: 3.h,
+                height: 2.h,
               ),
               Text(
                 'verification'.tr,
@@ -82,8 +62,12 @@ class _VerifyPhoneNumberWidgetState extends State<VerifyPhoneNumberWidget> {
               SizedBox(
                 height: 4.h,
               ),
+              LottieBuilder.asset(
+                "assets/animations/76041-enter-otp.json",
+                height: 100.sp,
+              ),
               SizedBox(
-                height: 5.h,
+                height: 4.h,
               ),
               Align(
                   alignment: Alignment.centerLeft,
@@ -111,20 +95,19 @@ class _VerifyPhoneNumberWidgetState extends State<VerifyPhoneNumberWidget> {
                 ),
                 blinkWhenObscuring: true,
                 animationType: AnimationType.fade,
-                cursorColor:ThemeController.oppositeColor(),
+                cursorColor: ThemeController.oppositeColor(),
                 animationDuration: const Duration(milliseconds: 300),
                 enableActiveFill: true,
                 autoFocus: true,
                 keyboardType: TextInputType.number,
                 cursorWidth: 0.4.w,
-                pastedTextStyle: TextStyle(
-                    fontSize: 12.sp, fontWeight: medium),
+                pastedTextStyle: TextStyle(fontSize: 12.sp, fontWeight: medium),
                 pinTheme: PinTheme(
                   borderWidth: 1.sp,
                   selectedFillColor: ThemeController.backgroundColor(),
-                  selectedColor: kPrimaryColor,
-                  activeColor: kPrimaryColor,
-                  inactiveColor: kPrimaryColor,
+                  selectedColor: ThemeController.primaryColor(),
+                  activeColor: ThemeController.primaryColor(),
+                  inactiveColor: ThemeController.primaryColor(),
                   activeFillColor: ThemeController.backgroundColor(),
                   inactiveFillColor: ThemeController.backgroundColor(),
                   shape: PinCodeFieldShape.box,
@@ -133,7 +116,7 @@ class _VerifyPhoneNumberWidgetState extends State<VerifyPhoneNumberWidget> {
                   fieldWidth: 34.sp,
                 ),
                 onChanged: (value) {
-                  if(value.length==6){
+                  if (value.length == 6) {
                     controller.enable.value = true;
                   }
                 },

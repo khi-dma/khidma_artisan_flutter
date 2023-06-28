@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.theme.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:sizer/sizer.dart';
 
@@ -12,7 +12,7 @@ RoundedLoadingButton animatedButton(String title, VoidCallback? function,
   return RoundedLoadingButton(
     resetAfterDuration: false,
     successColor: kGreenColor,
-    height: 45.sp,
+    height: 40.sp,
     width: 100.w,
     color: color,
     disabledColor: kPrimaryColor.withOpacity(0.6),
@@ -54,7 +54,7 @@ Widget button(String title, VoidCallback function, [color = kPrimaryColor]) {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.sp)),
         backgroundColor: color,
         fixedSize: Size.fromHeight(
-          45.sp,
+          40.sp,
         )),
     onPressed: function,
     child: Center(
@@ -73,14 +73,15 @@ Widget animatedButtonSecondary(String title, VoidCallback? function,
     valueColor: kPrimaryColor,
     resetAfterDuration: false,
     successColor: kGreenColor,
-    height: 45.sp,
+    height: 40.sp,
     width: 100.w,
-    color: ThemeController.backScaffoldGroundColor(),
+    color: const Color(0xff2f2f2f),
+    disabledColor: const Color(0xff2f2f2f).withOpacity(0.3),
     elevation: 0,
     borderRadius: 10.sp,
     child: Text(title,
         style: TextStyle(
-            color: kPrimaryColor, fontSize: 13.sp)),
+            color: kPrimaryColor.withOpacity(function==null ? 0.4:1), fontSize: 13.sp)),
     controller: btnController,
     onPressed: function,
   );

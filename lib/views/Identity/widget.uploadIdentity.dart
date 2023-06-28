@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.theme.dart';
 import 'package:khidma_artisan_flutter/data/font.data.dart';
 import 'package:khidma_artisan_flutter/data/pallete.data.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/IdentityControllers/controller.identityCard.dart';
+import '../../controllers/Identity/controller.identityCard.dart';
 import '../Components/component.button.dart';
 
 class UploadIdentityWidget extends StatelessWidget {

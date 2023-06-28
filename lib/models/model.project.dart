@@ -1,4 +1,4 @@
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.local.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.local.dart';
 import 'package:khidma_artisan_flutter/models/model.client.dart';
 import 'package:khidma_artisan_flutter/models/model.post.dart';
 import 'package:khidma_artisan_flutter/models/model.step.dart';
@@ -16,9 +16,15 @@ class ProjectModel {
   bool checked;
   String title;
   int state;
+  bool late;
+  bool asSteps;
+  StepModel currentStep;
 
   ProjectModel(
-      {required this.state,
+      {required this.currentStep,
+      required this.asSteps,
+      required this.late,
+      required this.state,
       required this.checked,
       required this.artisan,
       required this.id,
@@ -41,29 +47,41 @@ class ProjectModel {
       artisan: LocalController.getProfile(),
       checked: false,
       title: '',
-      state: -1);
+      state: -1,
+      late: false,
+      asSteps: false,
+      currentStep: StepModel.notNull);
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) {
+    List<StepModel> steps = json["Steps"] == null
+        ? []
+        : json["Steps"]
+            .map<StepModel>((json) => StepModel.fromJson(json))
+            .toList();
+
+    sortByEndDate(steps);
+    StepModel currentStep=StepModel.notNull;
+    for (var step in steps) {
+      if(!(step.checked)){
+        currentStep=step;
+        break;
+      }
+    }
     return ProjectModel(
         checked: json["checked"] ?? false,
-        steps: json["Steps"] == null
-            ? []
-            : json["Steps"]
-                .map<StepModel>((json) => StepModel.fromJson(json))
-                .toList(),
+        steps: steps,
         price: json["price"] ?? 1000,
         client: ClientModel.fromJson(json["UserClient"]),
         post: PostModel.fromJson(json["Post"]),
-        startDate: json["startDate"] != null
-            ? DateTime.parse(json["startDate"])
-            : DateTime.now(),
-        endDate: json["endDate"] != null
-            ? DateTime.parse(json["endDate"])
-            : DateTime.now().add(const Duration(days: 2)),
+        startDate: DateTime.parse(json["startDate"] ?? DateTime.now().add(const Duration(hours: 2)).toString()),
+        endDate: DateTime.parse(json["endDate"] ?? DateTime.now().add(const Duration(days: 2)).toString()),
         artisan: LocalController.getProfile(),
         id: json["idProject"],
         title: json["title"] ?? "",
-        state: json["state"]);
+        state: json["state"],
+        late: json["late"],
+        asSteps: steps.isNotEmpty,
+        currentStep: currentStep);
   }
 
   Map<String, dynamic> toJson() {
@@ -83,7 +101,7 @@ class ProjectModel {
       other is ProjectModel &&
           runtimeType == other.runtimeType &&
           id == other.id &&
-          steps == other.steps &&
+          sameSteps(other) &&
           price == other.price &&
           client == other.client &&
           artisan == other.artisan &&
@@ -100,6 +118,14 @@ class ProjectModel {
           endDate.minute == other.endDate.minute &&
           checked == other.checked &&
           title == other.title;
+
+  bool sameSteps(ProjectModel other){
+    if (steps.length != other.steps.length) return false;
+    for (var i = 0; i < other.steps.length; i++) {
+      if (steps[i] != other.steps[i]) return false;
+    }
+    return true;
+  }
 
   @override
   int get hashCode =>
@@ -119,17 +145,25 @@ class ProjectModel {
         checked: checked,
         artisan: artisan,
         id: id,
-        steps: steps,
+        steps: steps.map<StepModel>((step) =>step.clone()).toList(),
         price: price,
         client: client,
         post: post,
         startDate: startDate,
         endDate: endDate,
-        title: title, state: state);
+        title: title,
+        state: state,
+        late: late,
+        asSteps: asSteps,
+        currentStep: currentStep);
   }
 
   @override
   String toString() {
     return 'ProjectModel{id: $id,  price: $price, client: $client, artisan: $artisan, post: $post, startDate: $startDate, endDate: $endDate, checked: $checked, title: $title, state: $state}';
   }
+}
+
+void sortByEndDate(List<StepModel> list) {
+  list.sort((a, b) => a.endDate.compareTo(b.endDate));
 }

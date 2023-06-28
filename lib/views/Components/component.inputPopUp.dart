@@ -10,17 +10,18 @@ import '../../../data/font.data.dart';
 import '../../../data/pallete.data.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../controllers/LocalController/controller.theme.dart';
-import '../../controllers/authControllers/controller.signUp.dart';
+import '../../controllers/Local/controller.theme.dart';
+import '../../controllers/auth/controller.signUp.dart';
 
 class InputPopUpComponent extends StatefulWidget {
   final TextEditingController textEditingController;
   final String? Function(String?)? validate;
   final String hint;
   final bool edit;
+  final bool labelShow;
 
   const InputPopUpComponent(
-      {Key? key,
+      {Key? key,this.labelShow=false,
         this.edit=false,
       required this.hint,
       required this.textEditingController,
@@ -50,11 +51,11 @@ class _InputDateComponentState extends State<InputPopUpComponent> {
       },
       readOnly: true,
       cursorColor: kPrimaryColor,
-      style: TextStyle(fontSize: 10.sp, fontWeight: regular),
+      style: TextStyle(fontSize: 12.sp, fontWeight: regular),
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.3.h),
+        contentPadding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.h),
         hintText: widget.hint,
-        labelText: widget.hint,
+        labelText:widget.labelShow? widget.hint:"",
         labelStyle: TextStyle(color: kGreyTextColor, fontSize: 10.5.sp),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4.sp),

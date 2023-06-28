@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:khidma_artisan_flutter/constWidgets/cashedNetwork.dart';
-import 'package:khidma_artisan_flutter/controllers/profileControllers/controller.diploma.dart';
+import 'package:khidma_artisan_flutter/controllers/profile/controller.diploma.dart';
 import 'package:sizer/sizer.dart';
 
 Widget diplomaWidgetModel(int index) {

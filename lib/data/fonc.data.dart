@@ -37,7 +37,15 @@ String dateToStringPreProject(DateTime dateTime){
   return formattedDateTime;
 }
 
-String dateToStringListProject(DateTime dateTime){
+String dateToStringListWithoutYear(DateTime dateTime){
   String formattedDateTime = DateFormat("dd MMM hh:mm a").format(dateTime);
   return formattedDateTime;
+}
+
+double percent(int part,int total){
+  if(total==0){
+    return 0;
+  }else{
+    return part/total;
+  }
 }

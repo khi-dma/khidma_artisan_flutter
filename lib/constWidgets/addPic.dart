@@ -1,5 +1,5 @@
 import 'package:flutter_svg/svg.dart';
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.theme.dart';
 import 'package:sizer/sizer.dart';
 
 addPicModel() => SvgPicture.asset(

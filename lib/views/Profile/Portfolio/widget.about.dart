@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
-import 'package:khidma_artisan_flutter/controllers/profileControllers/controller.portfolio.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.theme.dart';
+import 'package:khidma_artisan_flutter/controllers/profile/controller.portfolio.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Components/component.aboutInput.dart';

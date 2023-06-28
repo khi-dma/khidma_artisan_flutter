@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:khidma_artisan_flutter/constWidgets/appBar.dart';
 import 'package:khidma_artisan_flutter/views/Components/component.button.dart';
-import '../../../controllers/profileControllers/controller.editPortfolio.dart';
+import '../../../controllers/profile/controller.editPortfolio.dart';
 import '../../Components/component.input.dart';
 import 'package:sizer/sizer.dart';
 

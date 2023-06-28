@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.theme.dart';
-import 'package:khidma_artisan_flutter/controllers/projectControllers/controller.projectList.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.theme.dart';
+import 'package:khidma_artisan_flutter/controllers/project/controller.projectList.dart';
 import 'package:khidma_artisan_flutter/views/Project/ProjectsList/widgets/widget.List.dart';
 import 'package:khidma_artisan_flutter/views/Project/ProjectsList/widgets/widget.toggleSwitch.dart';
 import 'package:sizer/sizer.dart';

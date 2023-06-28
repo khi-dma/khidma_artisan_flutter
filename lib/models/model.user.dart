@@ -1,4 +1,4 @@
-import 'package:khidma_artisan_flutter/controllers/LocalController/controller.local.dart';
+import 'package:khidma_artisan_flutter/controllers/Local/controller.local.dart';
 import 'package:khidma_artisan_flutter/data/const.data.dart';
 import 'package:khidma_artisan_flutter/models/model.service.dart';
 
@@ -13,7 +13,6 @@ class UserModel {
   String birthDate;
   String municipal;
   ServiceModel service;
-  bool available;
   String uidFirebase;
   String rating;
 
@@ -28,7 +27,6 @@ class UserModel {
       required this.city,
       required this.sexe,
       required this.birthDate,
-      required this.available,
       required this.municipal,
       required this.service,required this.rating});
 
@@ -45,7 +43,6 @@ class UserModel {
       birthDate: json['birthDate'].toString(),
       service: service,
       municipal: json["municipal"],
-      available: json["available"],
       uidFirebase: LocalController.getUid(),
       rating :  (json["rating"] ?? 0).toString(),
     );
@@ -61,7 +58,6 @@ class UserModel {
     data['city'] = city;
     data['sexe'] = sexe;
     data['birthDate'] = birthDate;
-    data["available"] = available.toString();
     data["municipal"] = municipal;
     data["service"] = service.id.toString();
     data['uidFirebase'] = uidFirebase;

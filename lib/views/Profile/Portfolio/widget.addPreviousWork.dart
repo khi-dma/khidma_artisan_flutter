@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:khidma_artisan_flutter/constWidgets/appBar.dart';
-import 'package:khidma_artisan_flutter/controllers/profileControllers/controller.addPortfolio.dart';
+import 'package:khidma_artisan_flutter/controllers/profile/controller.addPortfolio.dart';
 import 'package:khidma_artisan_flutter/views/Components/component.button.dart';
 import '../../../constWidgets/addPic.dart';
 import '../../Components/component.input.dart';

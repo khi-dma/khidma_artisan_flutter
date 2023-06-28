@@ -1,7 +1,9 @@
+import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import '../controllers/LocalController/controller.local.dart';
+import 'package:khidma_artisan_flutter/models/model.available.dart';
+import '../controllers/Local/controller.local.dart';
 import '../data/serveur.data.dart';
 import '../models/general.dart';
 
@@ -23,8 +25,8 @@ class ProfileService {
 
       var streamedResponse = await request.send();
       var response = await http.Response.fromStream(streamedResponse);
-      if(response.statusCode==200){
-        return General( data: response.body);
+      if (response.statusCode == 200) {
+        return General(data: response.body);
       }
       return General(error: true, returnMessage: "went_wrong".tr, data: "");
     } catch (e) {
@@ -32,33 +34,37 @@ class ProfileService {
     }
   }
 
-  static Future<bool> updateAvailability() async {
+  static Future<bool> updateAvailability(AvailableModel available) async {
     try {
-      String url =urlUpdateAvailability;
+      String url = urlUpdateAvailability;
       var res = await http.put(Uri.parse(url),
-          headers: {"x-access-token": LocalController.getToken()});
-      if(res.statusCode==200){
+          headers: {
+            "x-access-token": LocalController.getToken(),
+            "Content-Type": "application/json"
+          },
+          body: jsonEncode(available.toMap()));
+      print(res.statusCode);
+      if (res.statusCode == 200) {
         return false;
       }
       return true;
     } catch (e) {
+      print(e);
       return true;
     }
   }
 
-  static Future<General<String>> updateUser(Map modifiedData)async{
-    try{
-      String url = urlUpdateUser ;
-      http.Response res = await http.put(
-          Uri.parse(url),
+  static Future<General<String>> updateUser(Map modifiedData) async {
+    try {
+      String url = urlUpdateUser;
+      http.Response res = await http.put(Uri.parse(url),
           headers: {'x-access-token': LocalController.getToken()},
-          body: modifiedData
-      );
+          body: modifiedData);
       if (res.statusCode == 200) {
         return General(data: res.body);
       }
       return General(error: true, returnMessage: "went_wrong".tr, data: "");
-    }catch(e){
+    } catch (e) {
       return General(error: true, returnMessage: "went_wrong".tr, data: "");
     }
   }

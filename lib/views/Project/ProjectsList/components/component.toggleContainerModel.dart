@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khidma_artisan_flutter/controllers/projectControllers/controller.projectList.dart';
+import 'package:khidma_artisan_flutter/controllers/project/controller.projectList.dart';
 import 'package:khidma_artisan_flutter/data/font.data.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../controllers/LocalController/controller.theme.dart';
+import '../../../../controllers/Local/controller.theme.dart';
 
 Widget toggleSwitchContainerModel(String title, int whichOne) {
   final controller = Get.find<ProjectListController>();

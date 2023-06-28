@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../controllers/LocalController/controller.theme.dart';
+import '../../../../controllers/Local/controller.theme.dart';
 import '../../../../data/font.data.dart';
 
 Widget datePicker(Function(DateTime) function,DateTime initial,DateTime minimal){

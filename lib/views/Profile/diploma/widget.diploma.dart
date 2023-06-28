@@ -3,7 +3,7 @@ import 'package:khidma_artisan_flutter/constWidgets/appBar.dart';
 import 'package:get/get.dart';
 import 'package:khidma_artisan_flutter/constWidgets/errorWidget.dart';
 import 'package:khidma_artisan_flutter/constWidgets/progressIndicator.dart';
-import 'package:khidma_artisan_flutter/controllers/profileControllers/controller.diploma.dart';
+import 'package:khidma_artisan_flutter/controllers/profile/controller.diploma.dart';
 import 'package:khidma_artisan_flutter/views/Profile/diploma/widget.emptyDiploma.dart';
 import 'package:sizer/sizer.dart';
 

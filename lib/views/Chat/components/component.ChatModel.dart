@@ -3,7 +3,7 @@ import 'package:sizer/sizer.dart';
 import '../../../constWidgets/cashedNetwork.dart';
 import '../../../controllers/Chat/controller.Chat.dart';
 import '../../../controllers/Chat/controller.abstractClass.dart';
-import '../../../controllers/LocalController/controller.theme.dart';
+import '../../../controllers/Local/controller.theme.dart';
 import '../../../data/font.data.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:get/get.dart';

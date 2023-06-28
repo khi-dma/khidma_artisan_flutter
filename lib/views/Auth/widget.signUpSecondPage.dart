@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:khidma_artisan_flutter/controllers/authControllers/controller.signUp.dart';
+import 'package:khidma_artisan_flutter/controllers/auth/controller.signUp.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../data/font.data.dart';

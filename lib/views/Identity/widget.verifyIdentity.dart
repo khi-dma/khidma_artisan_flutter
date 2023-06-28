@@ -4,8 +4,8 @@ import 'package:khidma_artisan_flutter/constWidgets/errorWidget.dart';
 import 'package:khidma_artisan_flutter/constWidgets/progressIndicator.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../controllers/IdentityControllers/controller.identityCard.dart';
-import '../../controllers/IdentityControllers/controller.verifyIdentity.dart';
+import '../../controllers/Identity/controller.identityCard.dart';
+import '../../controllers/Identity/controller.verifyIdentity.dart';
 import '../../data/font.data.dart';
 import '../../data/pallete.data.dart';
 import '../Components/component.button.dart';

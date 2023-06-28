@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khidma_artisan_flutter/constWidgets/appBar.dart';
 import 'package:khidma_artisan_flutter/constWidgets/errorWidget.dart';
 import 'package:khidma_artisan_flutter/constWidgets/progressIndicator.dart';
-import 'package:khidma_artisan_flutter/controllers/profileControllers/controller.portfolio.dart';
+import 'package:khidma_artisan_flutter/controllers/profile/controller.portfolio.dart';
 import 'package:khidma_artisan_flutter/views/Profile/Portfolio/widget.about.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';

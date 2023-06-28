@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:khidma_artisan_flutter/models/general.dart';
 import 'package:khidma_artisan_flutter/models/model.portFolio.dart';
 import 'package:khidma_artisan_flutter/models/model.post.dart';
-import '../controllers/LocalController/controller.local.dart';
+import '../controllers/Local/controller.local.dart';
 import '../data/serveur.data.dart';
 import '../models/model.request.dart';
 

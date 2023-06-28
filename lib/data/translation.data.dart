@@ -9,7 +9,9 @@ class LocalString extends Translations {
           "appearance":"Appearance",
           "language":"Language",
           "portfolio":"Portfolio",
-          "availability":"Availability"
+          "availability":"Availability",
+          "verificationCode": "Verification code",
+          "confirmDesc": "Please enter the verification code \nsent to ",
         },
         'fr_FR': {}
       };
