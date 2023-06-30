@@ -22,6 +22,7 @@ class PortfolioService {
       }
       return General(data: portFolio, error: true);
     } catch (e) {
+      print(e);
       return General(data: portFolio, error: true);
     }
   }

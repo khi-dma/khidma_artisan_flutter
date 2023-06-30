@@ -19,9 +19,13 @@ class ProjectModel {
   bool late;
   bool asSteps;
   StepModel currentStep;
+  bool commentClient;
+  bool commentArtisan;
 
   ProjectModel(
-      {required this.currentStep,
+      {required this.commentClient,
+      required this.commentArtisan,
+      required this.currentStep,
       required this.asSteps,
       required this.late,
       required this.state,
@@ -50,7 +54,9 @@ class ProjectModel {
       state: -1,
       late: false,
       asSteps: false,
-      currentStep: StepModel.notNull);
+      currentStep: StepModel.notNull,
+      commentClient: false,
+      commentArtisan: false);
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) {
     List<StepModel> steps = json["Steps"] == null
@@ -60,10 +66,10 @@ class ProjectModel {
             .toList();
 
     sortByEndDate(steps);
-    StepModel currentStep=StepModel.notNull;
+    StepModel currentStep = StepModel.notNull;
     for (var step in steps) {
-      if(!(step.checked)){
-        currentStep=step;
+      if (!(step.checked)) {
+        currentStep = step;
         break;
       }
     }
@@ -73,15 +79,19 @@ class ProjectModel {
         price: json["price"] ?? 1000,
         client: ClientModel.fromJson(json["UserClient"]),
         post: PostModel.fromJson(json["Post"]),
-        startDate: DateTime.parse(json["startDate"] ?? DateTime.now().add(const Duration(hours: 2)).toString()),
-        endDate: DateTime.parse(json["endDate"] ?? DateTime.now().add(const Duration(days: 2)).toString()),
+        startDate: DateTime.parse(json["startDate"] ??
+            DateTime.now().add(const Duration(hours: 2)).toString()),
+        endDate: DateTime.parse(json["endDate"] ??
+            DateTime.now().add(const Duration(days: 2)).toString()),
         artisan: LocalController.getProfile(),
         id: json["idProject"],
         title: json["title"] ?? "",
         state: json["state"],
         late: json["late"],
         asSteps: steps.isNotEmpty,
-        currentStep: currentStep);
+        currentStep: currentStep,
+        commentClient: json["commentClient"]!=0,
+        commentArtisan: json["commentArtisan"]!=0);
   }
 
   Map<String, dynamic> toJson() {
@@ -119,7 +129,7 @@ class ProjectModel {
           checked == other.checked &&
           title == other.title;
 
-  bool sameSteps(ProjectModel other){
+  bool sameSteps(ProjectModel other) {
     if (steps.length != other.steps.length) return false;
     for (var i = 0; i < other.steps.length; i++) {
       if (steps[i] != other.steps[i]) return false;
@@ -145,7 +155,7 @@ class ProjectModel {
         checked: checked,
         artisan: artisan,
         id: id,
-        steps: steps.map<StepModel>((step) =>step.clone()).toList(),
+        steps: steps.map<StepModel>((step) => step.clone()).toList(),
         price: price,
         client: client,
         post: post,
@@ -155,7 +165,9 @@ class ProjectModel {
         state: state,
         late: late,
         asSteps: asSteps,
-        currentStep: currentStep);
+        currentStep: currentStep,
+        commentClient: commentClient,
+        commentArtisan: commentArtisan);
   }
 
   @override

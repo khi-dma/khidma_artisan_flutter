@@ -8,6 +8,7 @@ import 'package:khidma_artisan_flutter/views/Profile/widget.profile.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/Local/controller.theme.dart';
+import '../Notification/widget.notifications.dart';
 import '../Project/ProjectsList/widget.projectsList.dart';
 
 class BottomBarWidget extends StatefulWidget {
@@ -20,21 +21,21 @@ class BottomBarWidget extends StatefulWidget {
 class _BottomBarWidgetState extends State<BottomBarWidget> {
   var currentIndex = 0;
   List<Widget> screens = [
-    const HomeWidget(),
-    PostsWidget(),
+     HomeWidget(),
+    const NotificationsWidget(),
     const ProjectListWidget(),
     const ProfileWidget()
   ];
   List<String> icons = [
     "home",
-    "postBB",
+    "notifications",
     "project",
     "profile",
   ];
 
   List<String> listOfStrings = [
     'Home',
-    'Posts',
+    'Notific',
     'Projects',
     'Account',
   ];
@@ -149,7 +150,7 @@ class _BottomBarWidgetState extends State<BottomBarWidget> {
                                   SvgPicture.asset(
                                     "assets/icons/" + icons[index] + ".svg",
                                     height: index == 1
-                                        ? displayWidth * .063
+                                        ? displayWidth * .060
                                         : displayWidth * .065,
                                     width: displayWidth * .07,
                                     color: index == currentIndex

@@ -9,9 +9,9 @@ Widget iconContainerModel(String icon, Widget screen) {
   return InkWell(
     onTap: () => Get.to(() => screen),
     child: Container(
-      padding: EdgeInsets.all(13.sp),
-      height: 42.sp,
-      width: 42.sp,
+      padding: EdgeInsets.all(12.sp),
+      height: 38.sp,
+      width: 38.sp,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7.sp),
         color: ThemeController.backgroundColor(),

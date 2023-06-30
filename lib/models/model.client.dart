@@ -8,8 +8,11 @@ class ClientModel {
   DateTime birthDate;
   String profilePicture;
 
+  String? addressCrypto;
+
 
   ClientModel({
+    this.addressCrypto,
     required this.name,
     required this.uidFirebase,
     required this.phoneNumber,
@@ -23,6 +26,7 @@ class ClientModel {
 
   factory ClientModel.fromJson(Map<String, dynamic> json) {
     return ClientModel(
+      addressCrypto: json["addressCrypto"],
       name: (json['lastName']?? json["name"])+" "+( json['firstName']??""),
       uidFirebase: json['uidFirebase'],
       phoneNumber: json['phoneNumber'],

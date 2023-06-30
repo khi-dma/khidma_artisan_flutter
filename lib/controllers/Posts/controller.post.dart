@@ -14,7 +14,6 @@ class PostController extends PostAbstractClassController {
     // TODO: implement onInit
     super.onInit();
     scrollController.addListener(onScroll);
-    getPosts();
   }
 
   var haveNext = false;
@@ -33,7 +32,7 @@ class PostController extends PostAbstractClassController {
       posts.addAll(res.data);
       haveNext = res.haveNext;
     }
-
+    showKeyboard();
     switchState();
     switchFetchingState(res.error);
   }
@@ -125,6 +124,12 @@ class PostController extends PostAbstractClassController {
     if (first && !switchState) {
       first = !first;
     }
+  }
+
+  FocusNode focusNode = FocusNode();
+
+  void showKeyboard() {
+    focusNode.requestFocus();
   }
 
   @override

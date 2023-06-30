@@ -15,10 +15,12 @@ class UserModel {
   ServiceModel service;
   String uidFirebase;
   String rating;
+  String? addressCrypto;
+
 
 
   UserModel(
-      {required this.uidFirebase,
+      {this.addressCrypto,required this.uidFirebase,
       required this.firstName,
       required this.lastName,
       required this.phoneNumber,
@@ -61,6 +63,7 @@ class UserModel {
     data["municipal"] = municipal;
     data["service"] = service.id.toString();
     data['uidFirebase'] = uidFirebase;
+    data["addressCrypto"] = addressCrypto;
     return data;
   }
 }

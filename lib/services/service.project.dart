@@ -28,6 +28,8 @@ class ProjectService {
         error: true,
       );
     } catch (e) {
+      print(e);
+
       return General(
         data: [],
         error: true,

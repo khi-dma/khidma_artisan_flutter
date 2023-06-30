@@ -24,33 +24,36 @@ class VerifyIdentity extends StatelessWidget {
               ? circularProgressModel()
               : controller.error.value
                   ? errorWidget()
-                  : Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          "your card has been sent",
-                          style: TextStyle(fontSize: 15.sp, fontWeight: semiBold),
-                        ),
-                        SizedBox(
-                          height: 2.h,
-                        ),
-                        Text(
-                          "We will verify your identity card,\n Wait for our response before 24 hours",
-                          style: TextStyle(
-                              fontSize: 10.sp,
-                              fontWeight: medium,
-                              color: kGreyTextColor),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        animatedButtonSecondary(
-                            "Log out".tr,
-                            () => controller.logOut(),
-                            controller.logOutButtonController)
-                      ],
-                    ),
+                  : Padding(
+                    padding:  EdgeInsets.symmetric(horizontal: 6.w),
+                    child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "your card has been sent",
+                            style: TextStyle(fontSize: 15.sp, fontWeight: semiBold),
+                          ),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          Text(
+                            "We will verify your identity card,\n Wait for our response before 24 hours",
+                            style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: medium,
+                                color: kGreyTextColor),
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          animatedButtonSecondary(
+                              "Log out".tr,
+                              () => controller.logOut(),
+                              controller.logOutButtonController)
+                        ],
+                      ),
+                  ),
         ),
       ),
     ));

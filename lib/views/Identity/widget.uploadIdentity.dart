@@ -49,7 +49,7 @@ class UploadIdentityWidget extends StatelessWidget {
                 ()=> InkWell(
                 onTap: ()=>controller.chooseImage(1),
                 child: SvgPicture.asset(
-                  "assets/icons/uploadImage.svg",
+                  ThemeController.isThemeDark() ?"assets/icons/uploadImageDark.svg"  :"assets/icons/uploadImage.svg",
                   color: controller.firstImagePath.value.isEmpty
                       ? null
                       : ThemeController.primaryColor(),
@@ -69,7 +69,7 @@ class UploadIdentityWidget extends StatelessWidget {
             Obx(()=>InkWell(
                 onTap: ()=>controller.chooseImage(2),
                 child: SvgPicture.asset(
-                  "assets/icons/uploadImage.svg",
+                  ThemeController.isThemeDark() ?"assets/icons/uploadImageDark.svg"  :"assets/icons/uploadImage.svg",
                   color: controller.secondImagePath.value.isEmpty
                       ? null
                       : ThemeController.primaryColor(),

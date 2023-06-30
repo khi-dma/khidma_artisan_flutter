@@ -33,7 +33,6 @@ class InputPopUpComponent extends StatefulWidget {
 }
 
 class _InputDateComponentState extends State<InputPopUpComponent> {
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -50,12 +49,11 @@ class _InputDateComponentState extends State<InputPopUpComponent> {
         });
       },
       readOnly: true,
-      cursorColor: kPrimaryColor,
+      cursorColor: ThemeController.primaryColor(),
       style: TextStyle(fontSize: 12.sp, fontWeight: regular),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.h),
         hintText: widget.hint,
-        labelText:widget.labelShow? widget.hint:"",
         labelStyle: TextStyle(color: kGreyTextColor, fontSize: 10.5.sp),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4.sp),

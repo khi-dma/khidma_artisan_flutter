@@ -70,6 +70,7 @@ class LogInController extends GetxController {
         btnController.success();
         this.verificationId = verificationId;
         Timer(const Duration(milliseconds: 300), () {
+          btnController.reset();
           if (!resend) {
             Get.to(() =>  VerifyPhoneNumberWidget());
             enable.value = false;

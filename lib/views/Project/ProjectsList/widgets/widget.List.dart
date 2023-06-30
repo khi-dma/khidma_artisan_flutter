@@ -24,11 +24,16 @@ Widget projectsListModel() {
                       init: controller,
                       id: 'list',
                       builder: (context) {
-                        return ListView.builder(
-                            padding: EdgeInsets.symmetric(horizontal: 4.w),
-                            itemCount: projects.length,
-                            itemBuilder: (context, index) =>
-                                itemBuilderList(index));
+                        return ListView.separated(
+                          padding: EdgeInsets.symmetric(horizontal: 4.w),
+                          itemCount: projects.length,
+                          itemBuilder: (context, index) =>
+                              itemBuilderList(index),
+                          separatorBuilder: (BuildContext context, int index) =>
+                              SizedBox(
+                            height: 2.h,
+                          ),
+                        );
                       }),
     );
   });

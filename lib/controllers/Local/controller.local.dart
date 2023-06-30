@@ -13,8 +13,8 @@ class LocalController extends GetxController {
     box.write("token", token);
   }
 
-  static getToken() {
-    return box.read("token");
+  static String getToken() {
+    return box.read("token")??"";
   }
 
   static setState(int state) {
@@ -34,7 +34,6 @@ class LocalController extends GetxController {
   }
 
   static void setProfile(String data) {
-    setAvailability(AvailableModel.notNull);
     box.write("profile", data);
   }
 
@@ -61,13 +60,6 @@ class LocalController extends GetxController {
     return UserModel.fromJson(jsonDecode(box.read("profile"))["data"]["User"]);
   }
 
-  static AvailableModel getAvailability() {
-    return box.read("availability") == null ? AvailableModel.notNull : AvailableModel.fromJson( box.read("availability"));
-  }
-
-  static void setAvailability(AvailableModel availableModel) {
-    box.write("availability",availableModel.toMap());
-  }
 
   static void clear() {
     setLang('');

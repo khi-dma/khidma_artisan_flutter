@@ -1,7 +1,10 @@
-String baseUrl = "http://10.0.2.2:3000";
+String baseUrl = "http://10.0.2.2:8080";
+
+
 String urlLogin  = baseUrl+"/api/artisan/login";
 String urlSignUp  = baseUrl+"/api/artisan/signup";
 String urlMe  = baseUrl+"/api/artisan/me";
+String urlCause = baseUrl+"/api/artisan/cause";
 String urlUploadIdentity = baseUrl+"/api/artisan/uploadIdentity";
 String utlGetPosts = baseUrl+"/api/artisan/post?";
 String updatePicProfile =  baseUrl+"/api/artisan/updatePic";
@@ -29,3 +32,4 @@ String utlLaunchProject = baseUrl+"/api/artisan/project/";
 String urlAskCheck = baseUrl+"/api/artisan/project/";
 
 
+String urlAddAddress = baseUrl+"/api/artisan/updateAddress";

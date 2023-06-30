@@ -1,11 +1,146 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:khidma_artisan_flutter/controllers/Local/controller.local.dart';
 
-class HomeController extends GetxController{
+import '../../models/model.offer.dart';
+import '../../models/model.post.dart';
+import '../../models/model.request.dart';
+import '../../services/service.post.dart';
+import '../Posts/controller.abstractClass.dart';
+import '../Posts/controller.save.dart';
+
+class HomeController extends PostAbstractClassController{
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    var profile = LocalController.getProfile();
+    scrollController.addListener(onScroll);
+  }
+
+  var haveNext = false;
+  var error = false.obs;
+  int page = 0;
+
+  void getPosts() async {
+    switchState();
+    var res = await PostService.getPosts(page, search);
+    error.value = res.error;
+    if (!res.error) {
+      if (page == 0) {
+        posts.value = [];
+      }
+      preTreatment(res.data);
+      posts.addAll(res.data);
+      haveNext = res.haveNext;
+    }
+    showKeyboard();
+    switchState();
+    switchFetchingState(res.error);
+  }
+
+  preTreatment(List<PostModel> posts) {
+    final controller = SaveController();
+    for (PostModel post in posts) {
+      for (OfferModel offer in post.offers) {
+        if (offer.idArtisan.toString() ==
+            LocalController.getProfile().phoneNumber) {
+          post.offered = true;
+          post.offer = offer;
+          break;
+        }
+      }
+      for (RequestModel request in post.requests) {
+        if (request.idArtisan.toString() ==
+            LocalController.getProfile().phoneNumber) {
+          post.requested.value = true;
+          post.request = request;
+          break;
+        }
+      }
+      post.saved.value = controller.isSaved(post.idPost);
+    }
+  }
+
+  ///// search
+  String search = "";
+  TextEditingController searchController = TextEditingController();
+
+  submit(String? value) {
+    //if ((searchController.text.isNotEmpty && searchController.text != search) ||
+    //   (searchController.text.isEmpty && search.isNotEmpty)) {
+    search = searchController.text;
+    page = 0;
+    getPosts();
+    //}
+  }
+
+
+  clear(){
+    search = "";
+    searchController.clear();
+    page = 0;
+    getPosts();
+  }
+
+  /////// scroll
+  final ScrollController scrollController = ScrollController();
+
+  void onScroll() {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      if (haveNext) {
+        ++page;
+        getPosts();
+      }
+    }
+  }
+
+  //// UI STATE
+  var downloading = false.obs;
+  var downloadingPagination = false.obs;
+
+  @override
+  switchSave(int index) {
+    posts[index].saved.value = !(posts[index].saved.value);
+    if (posts[index].saved.value) {
+      SaveController().addPost(posts[index]);
+    } else {
+      SaveController().removePost(posts[index].idPost);
+    }
+  }
+
+  switchState() {
+    if (page == 0) {
+      if (first) {
+        downloading.value = !downloading.value;
+      }
+    } else {
+      downloadingPagination.value = !downloadingPagination.value;
+    }
+  }
+
+  bool first = true;
+
+  switchFetchingState(bool switchState) {
+    if (first && !switchState) {
+      first = !first;
+    }
+  }
+
+  FocusNode focusNode = FocusNode();
+
+  void showKeyboard() {
+    focusNode.requestFocus();
+  }
+
+  @override
+  void function(RequestModel request) {
+    currentPost.requested.value = true;
+    currentPost.request=request;
+    ++currentPost.requestsNumber;
+    if (currentPost.saved.isTrue) {
+      SaveController().removePost(currentPost.idPost);
+      SaveController().addPost(currentPost);
+    }
   }
 }

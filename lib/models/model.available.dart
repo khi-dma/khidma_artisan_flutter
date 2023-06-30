@@ -35,7 +35,15 @@ class AvailableModel {
       schedule: (json['schedule'] as bool).obs,
       available: (json['available'] as bool).obs,
       note: json['note'],
-      weekday: Map<String, bool>.from(json['weekday'] as Map),
+      weekday: {
+        "sunday": json["sunday"],
+        "monday": json["monday"],
+        "tuesday": json["tuesday"],
+        "wednesday": json["wednesday"],
+        "thursday": json["thursday"],
+        "friday": json["friday"],
+        "saturday": json["saturday"],
+      },
       receiveOffers: (json['receiveOffers'] as bool).obs,
     );
   }

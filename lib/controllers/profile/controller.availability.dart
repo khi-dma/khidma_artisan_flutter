@@ -7,10 +7,14 @@ import 'package:khidma_artisan_flutter/services/service.profile.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 import '../../models/model.available.dart';
+import '../../services/service.auth.dart';
 
 class AvailabilityController extends GetxController {
-  AvailableModel availability = LocalController.getAvailability();
-  AvailableModel availabilityBefore = LocalController.getAvailability().clone();
+
+  var error = false.obs;
+   AvailableModel availability=AvailableModel.notNull;
+   AvailableModel availabilityBefore=AvailableModel.notNull;
+
   TextEditingController noteController = TextEditingController();
 
   RoundedLoadingButtonController btnController =
@@ -21,16 +25,25 @@ class AvailabilityController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     noteController = TextEditingController(text: availability.note);
+    getAvailability();
+  }
+
+  getAvailability()async  {
+    switchState();
+    var res= await AuthService.available();
+    error.value=res.error;
+    availability=res.data;
+    availabilityBefore=availability.clone();
+    switchState();
   }
 
   void save() async {
-    var error =await  ProfileService.updateAvailability(availability);
-    if(error){
+    var error = await ProfileService.updateAvailability(availability);
+    if (error) {
       snackBarModel("Failed", "Something went wrong", true);
-    }else{
+    } else {
       Get.back();
       snackBarModel("Success", "Availability status updated", false);
-      LocalController.setAvailability(availability);
     }
     btnController.stop();
   }
@@ -55,4 +68,8 @@ class AvailabilityController extends GetxController {
   void updateReceiveOffersOffline(bool value) {
     availability.receiveOffers.value = value;
   }
+
+  var downloading = false.obs;
+
+  switchState() => downloading.value = !downloading.value;
 }

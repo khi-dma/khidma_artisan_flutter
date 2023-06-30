@@ -68,4 +68,22 @@ class ProfileService {
       return General(error: true, returnMessage: "went_wrong".tr, data: "");
     }
   }
+
+  static Future<General<String>> updateAddress(String address) async {
+    try {
+      String url = urlAddAddress;
+      http.Response res = await http.put(Uri.parse(url),
+          headers: {
+            'x-access-token': LocalController.getToken(),
+            "Content-Type": "application/json"
+          },
+          body: jsonEncode({"addressCrypto": address}));
+      if (res.statusCode == 200) {
+        return General(data: res.body);
+      }
+      return General(error: true, returnMessage: "went_wrong".tr, data: "");
+    } catch (e) {
+      return General(error: true, returnMessage: "went_wrong".tr, data: "");
+    }
+  }
 }

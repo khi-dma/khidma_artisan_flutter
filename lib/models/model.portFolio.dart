@@ -14,7 +14,7 @@ class PortfolioModel {
         previousWork: RxList<PreviousWorkModel>.from(
           json["portfolio"].map<PreviousWorkModel>((json) => PreviousWorkModel.fromJson(json)).toList(),
         ),
-        description: json["description"]);
+        description: json["description"]??"");
   }
 
   @override

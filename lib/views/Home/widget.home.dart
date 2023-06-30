@@ -3,33 +3,73 @@ import 'package:get/get.dart';
 import 'package:khidma_artisan_flutter/views/Home/widget.appBar.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../constWidgets/emptyList.dart';
+import '../../constWidgets/errorWidget.dart';
+import '../../constWidgets/progressIndicator.dart';
 import '../../controllers/Home/controller.home.dart';
-import 'components/component.search.dart';
-import 'components/component.title.dart';
+import '../../controllers/Local/controller.theme.dart';
+import '../../controllers/Posts/controller.post.dart';
+import '../Posts/components/component.postWidgetModel.dart';
 
 class HomeWidget extends StatelessWidget {
-  const HomeWidget({Key? key}) : super(key: key);
+  HomeWidget({Key? key}) : super(key: key);
+  final controller = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeController());
+    controller.getPosts();
+
     return Column(
       children: [
-        SizedBox(height: 3.h),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 6.w),
-          child: Column(
-            children: [
-              appBarHome(),
-              SizedBox(height: 3.h),
-              //searchBar(),
-              SizedBox(height: 3.h),
-              //titleSeeAll("Services",const ServiceWidget()),
-            ],
-          ),
-        ),
-        //serviceHome(),
-
+        SizedBox(height: 2.h),
+        appBarHome(),
+        SizedBox(height: 1.5.h),
+        Expanded(
+            child: Stack(
+              children: [
+                Obx(
+                  () => controller.downloading.value
+                      ? circularProgressModel()
+                      : controller.error.value
+                          ? errorWidget()
+                          : controller.posts.isEmpty
+                              ? emptyListWarning()
+                              : ListView.separated(
+                                  controller: controller.scrollController,
+                                  padding:
+                                      EdgeInsets.only(top: 2.h, bottom: 12.h),
+                                  itemBuilder: (context, index) => Hero(
+                                      tag: "post$index",
+                                      child:
+                                          postWidgetModel(index, controller)),
+                                  separatorBuilder: (context, index) =>
+                                      Container(
+                                        height: 2.h,
+                                        color: ThemeController.isThemeDark()
+                                            ? ThemeController
+                                                .backgroundColor()
+                                            : ThemeController
+                                                .backScaffoldGroundColor(),
+                                      ),
+                                  itemCount: controller.posts.length),
+                ),
+                Visibility(
+                  visible: ThemeController.isThemeDark(),
+                  child: AnimatedContainer(
+                    height: 3.h,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                          ThemeController.backScaffoldGroundColor(),
+                          Colors.transparent
+                        ])),
+                    duration: const Duration(milliseconds: 100),
+                  ),
+                ),
+              ],
+            ))
       ],
     );
   }
