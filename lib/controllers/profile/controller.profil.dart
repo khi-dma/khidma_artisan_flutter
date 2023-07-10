@@ -8,6 +8,8 @@ import '../../data/fonc.data.dart';
 import '../../models/model.user.dart';
 import '../../services/service.profile.dart';
 import '../../views/Auth/widget.phoneNumber.dart';
+import '../../views/BottomBar/widget.bottomBar.dart';
+import '../../views/Wrapper/widget.wrapper.dart';
 import '../Local/controller.local.dart';
 import '../Local/controller.theme.dart';
 
@@ -28,6 +30,7 @@ class ProfileController extends GetxController {
     cityController = TextEditingController(text: user.city);
     municipalController = TextEditingController(text: user.municipal);
     serviceController = TextEditingController(text: user.service.name);
+    cryptoAddressController = TextEditingController(text:user.addressCrypto);
     sexe = user.sexe == "Homme" ? 0 : 1;
   }
 
@@ -81,6 +84,7 @@ class ProfileController extends GetxController {
   late TextEditingController municipalController;
   late TextEditingController birthDateController;
   late TextEditingController serviceController;
+  late TextEditingController cryptoAddressController;
   int sexe = 0;
 
   int indexCity=0;
@@ -158,8 +162,7 @@ class ProfileController extends GetxController {
   logOut(){
     LocalController.clear();
     Get.deleteAll();
-    Get.offAll(()=>const LogInWidget());
-    btnController.stop();
+    Get.offAll(() => const WrapperWidget());
   }
 
   var updated = false.obs;

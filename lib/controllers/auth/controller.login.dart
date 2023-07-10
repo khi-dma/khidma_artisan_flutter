@@ -62,17 +62,21 @@ class LogInController extends GetxController {
       phoneNumber: '+213${phoneNumberController.text}',
       verificationCompleted: (PhoneAuthCredential credential) async {},
       verificationFailed: (FirebaseAuthException e) {
-        snackBarModel("Failed".tr, "went_wrong".tr, true);
+        snackBarModel("Failed".tr, e.toString(), true);
         btnController.error();
+        Timer(const Duration(milliseconds: 300), () {
+          btnController.reset();
+        });
       },
       timeout: const Duration(seconds: 120),
       codeSent: (String verificationId, int? resendToken) async {
+
         btnController.success();
         this.verificationId = verificationId;
         Timer(const Duration(milliseconds: 300), () {
           btnController.reset();
           if (!resend) {
-            Get.to(() =>  VerifyPhoneNumberWidget());
+            Get.to(() =>  const VerifyPhoneNumberWidget());
             enable.value = false;
           }
         });
@@ -85,7 +89,6 @@ class LogInController extends GetxController {
     var res = await AuthService.verifyCode(phoneNumberController.text,
         codeController.text, verificationId, tokenNotification);
     if (res.error) {
-      btnController.stop();
       snackBarModel("Failed".tr, res.returnMessage, true);
     } else {
       if (res.exist) {
@@ -106,6 +109,8 @@ class LogInController extends GetxController {
             ));
       }
     }
+    btnController.stop();
+
   }
 
   void startTimer() {

@@ -115,8 +115,6 @@ class SaveController extends PostAbstractClassController {
 
   @override
   function(RequestModel request) {
-    print('====');
-    print(request);
     final controller = Get.find<PostController>();
     currentPost.requested.value = true;
     write();

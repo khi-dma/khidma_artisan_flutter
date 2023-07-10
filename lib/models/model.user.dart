@@ -47,6 +47,7 @@ class UserModel {
       municipal: json["municipal"],
       uidFirebase: LocalController.getUid(),
       rating :  (json["rating"] ?? 0).toString(),
+        addressCrypto:json["addressCrypto"]
     );
   }
 
@@ -65,5 +66,10 @@ class UserModel {
     data['uidFirebase'] = uidFirebase;
     data["addressCrypto"] = addressCrypto;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'UserModel{firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, tokenNotification: $tokenNotification, profilePicture: $profilePicture, city: $city, sexe: $sexe, birthDate: $birthDate, municipal: $municipal, service: $service, uidFirebase: $uidFirebase, rating: $rating, addressCrypto: $addressCrypto}';
   }
 }

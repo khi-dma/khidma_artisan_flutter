@@ -6,6 +6,7 @@ import 'package:khidma_artisan_flutter/models/model.available.dart';
 import '../controllers/Local/controller.local.dart';
 import '../data/serveur.data.dart';
 import '../models/general.dart';
+import '../models/model.user.dart';
 
 class ProfileService {
   static Future<General<String>> updatePic(String path) async {
@@ -70,6 +71,7 @@ class ProfileService {
   }
 
   static Future<General<String>> updateAddress(String address) async {
+    print('=====');
     try {
       String url = urlAddAddress;
       http.Response res = await http.put(Uri.parse(url),
@@ -78,7 +80,11 @@ class ProfileService {
             "Content-Type": "application/json"
           },
           body: jsonEncode({"addressCrypto": address}));
+      print(res.statusCode);
+      print('');
       if (res.statusCode == 200) {
+      var user= UserModel.fromJson(jsonDecode(res.body)["data"]["User"]);
+      print(user.addressCrypto==null);
         return General(data: res.body);
       }
       return General(error: true, returnMessage: "went_wrong".tr, data: "");

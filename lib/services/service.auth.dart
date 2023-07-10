@@ -22,30 +22,18 @@ class AuthService {
         "verificationId": verificationId
       });
       var jsonData = jsonDecode(response.body);
-      print(response.statusCode);
 
-      if (response.statusCode == 401 && jsonData["success"] == false) {
-        return General(
-            error: true,
-            data: "code is not correct",
-            returnMessage: "code is not correct");
-      }
-      print(response.statusCode);
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+          verificationId: verificationId, smsCode: code);
+      var user = await FirebaseAuth.instance.signInWithCredential(credential);
+      LocalController.setUid(user.user!.uid);
       if (response.statusCode == 404 && jsonData["success"] == true) {
-        PhoneAuthCredential credential = PhoneAuthProvider.credential(
-            verificationId: verificationId, smsCode: code);
-        var user = await FirebaseAuth.instance.signInWithCredential(credential);
-        LocalController.setUid(user.user!.uid);
         return General(
             data: response.body,
             exist: false,
             token: jsonData["data"]["token"]);
       }
       if (response.statusCode == 200) {
-        PhoneAuthCredential credential = PhoneAuthProvider.credential(
-            verificationId: verificationId, smsCode: code);
-        var user = await FirebaseAuth.instance.signInWithCredential(credential);
-        LocalController.setUid(user.user!.uid);
         return General(
             data: response.body,
             exist: true,
@@ -54,7 +42,6 @@ class AuthService {
       }
       return General(error: true, data: "");
     } catch (e) {
-      print(e);
       return General(error: true, data: "", returnMessage: e.toString());
     }
   }
@@ -62,7 +49,11 @@ class AuthService {
   static Future<General<String>> signUp(UserModel user, String token) async {
     try {
       http.Response res = await http.post(Uri.parse(urlSignUp),
-          headers: {'x-access-token': token}, body: user.toJson());
+          headers: {
+            'x-access-token': token,
+            "Content-Type": "application/json"
+          },
+          body: jsonEncode(user.toJson()));
       var jsonData = jsonDecode(res.body);
       if (res.statusCode == 401) {
         return General(error: true, data: "", returnMessage: "went_wrong".tr);
@@ -72,12 +63,16 @@ class AuthService {
       }
       return General(error: true, data: "", returnMessage: "went_wrong".tr);
     } catch (e) {
+      print(e);
+
       return General(error: true, data: "", returnMessage: "went_wrong".tr);
     }
   }
 
   static Future<General<String>> uploadFiles(
       String filePath1, String filePath2) async {
+    print(filePath1);
+    print(filePath2);
     try {
       Map<String, String> headers = {
         'x-access-token': LocalController.getToken()

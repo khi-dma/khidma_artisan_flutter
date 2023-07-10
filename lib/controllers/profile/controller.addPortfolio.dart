@@ -52,12 +52,6 @@ class AddPortfolioController extends GetxController {
       .minLength(10, "description is too short")
       .build();
 
-  var numberCharDesc = "0/800".obs;
-
-  changeDescription(String? value) {
-    numberCharDesc.value =
-        descriptionController.text.length.toString() + "/800";
-  }
 
   Color longDescription() {
     return descriptionController.text.length > 800 ||

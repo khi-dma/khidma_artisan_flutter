@@ -77,10 +77,11 @@ dependencies:
   url_launcher: ^6.1.6
   awesome_notifications: ^0.7.4+1
   walletconnect_secure_storage: ^1.0.0
-  walletconnect_dart: ^0.0.11
   external_app_launcher: ^3.1.0
   web3dart: ^2.6.1
   store_redirect: ^2.0.1
+  walletconnect_flutter_v2: ^2.0.12
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
@@ -96,14 +97,14 @@ dev_dependencies:
 
 
 flutter_native_splash:
-  color: "#FFFFFF"
-  image: assets/logo/logo.png
+  color: "#EFC74F"
+  image: assets/logo/Logo.png
   android_gravity: center
   android: true
   ios: true
   android_12:
-    color: "#FFFFFF"
-    image: assets/logo/logo.png
+    color: "#EFC74F"
+    image: assets/logo/Logo.png
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -122,6 +123,7 @@ flutter:
     - assets/logo/
     - assets/images/
     - assets/animations/
+    - assets/contracts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

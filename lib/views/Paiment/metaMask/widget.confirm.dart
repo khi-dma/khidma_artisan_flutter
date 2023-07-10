@@ -26,7 +26,7 @@ class ConfirmWidget extends StatelessWidget {
           height: 2.h,
         ),
         Text(
-          controller.account.substring(0, 7) + ".....",
+          controller.account.substring(0, 1) + ".....",
           style: TextStyle(
               color: ThemeController.secondaryColor(), fontSize: 13.sp),
         ),
@@ -43,10 +43,10 @@ class ConfirmWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
+              /*Text(
                 controller.balance.toString().substring(0, 7),
                 style: TextStyle(fontSize: 14.sp),
-              ),
+              ),*/
               Text(
                 "  SepoliaETH",
                 style: TextStyle(fontSize: 11.sp),

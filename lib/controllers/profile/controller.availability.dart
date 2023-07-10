@@ -38,6 +38,7 @@ class AvailabilityController extends GetxController {
   }
 
   void save() async {
+    availability.note=noteController.text;
     var error = await ProfileService.updateAvailability(availability);
     if (error) {
       snackBarModel("Failed", "Something went wrong", true);

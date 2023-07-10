@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -24,8 +25,10 @@ class ConnectWidget extends StatelessWidget {
           Text("You have to connect to MetaMask wallet",
             style: TextStyle(color: ThemeController.secondaryColor()),),
           SizedBox(height: 10.h),
-          animatedButton(
-              "Connect", controller.connect, controller.btnController)
+          animatedButtonSecondary("Disconnect", controller.disconnectAccount, controller.disconnectController),
+          SizedBox(height: 2.h,),
+          button("Connect", controller.connect)
+
         ],
       ),
     );

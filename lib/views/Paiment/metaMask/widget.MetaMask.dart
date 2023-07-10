@@ -18,7 +18,6 @@ class MetaMaskWidget extends StatelessWidget {
     final controller = Get.put(WalletController());
     return SafeArea(
       child: Scaffold(
-          appBar: appBarModel("Wallet"),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 6.w),
             child: Obx(() {

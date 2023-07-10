@@ -6,6 +6,7 @@ import 'package:khidma_artisan_flutter/constWidgets/cashedNetwork.dart';
 import 'package:khidma_artisan_flutter/controllers/Local/controller.theme.dart';
 import 'package:khidma_artisan_flutter/data/font.data.dart';
 import 'package:khidma_artisan_flutter/models/model.post.dart';
+import 'package:khidma_artisan_flutter/views/Client/widget.clientDetail.dart';
 import 'package:sizer/sizer.dart';
 import '../../../controllers/Posts/controller.abstractClass.dart';
 import 'package:flutter_animated_icons/flutter_animated_icons.dart';
@@ -21,6 +22,7 @@ Widget postWidgetModel(int index, PostAbstractClassController controller) {
     child: Column(
       children: [
         ListTile(
+          onTap: ()=>Get.to(()=>ClientDetailWidget(client: post.userClient)),
           contentPadding: EdgeInsets.symmetric(horizontal: 2.w),
           leading: SizedBox(
             height: 30.sp,
@@ -73,7 +75,7 @@ Widget postWidgetModel(int index, PostAbstractClassController controller) {
         ),
         SizedBox(
           width: double.infinity,
-          child: cachedNetworkModel(post.urlPic),
+          child: cachedNetworkModel(post.urlPic,true),
         ),
         SizedBox(
           height: 2.h,

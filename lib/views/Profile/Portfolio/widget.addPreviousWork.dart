@@ -59,18 +59,8 @@ class AddPreviousWorkWidget extends StatelessWidget {
                   hintText: 'description',
                   validate: controller.validatorDescription,
                   maxLines: 8,
-                  change: controller.changeDescription,
                 ),
-                SizedBox(height: 1.h),
-                Obx(
-                  () => Align(
-                    alignment: Alignment.topRight,
-                    child: Text(
-                      controller.numberCharDesc.value,
-                      style: TextStyle(color: controller.longDescription()),
-                    ),
-                  ),
-                ),
+
                 SizedBox(height: 5.h),
                 animatedButton("Add", controller.addPortfolio, controller.btnController)
               ],

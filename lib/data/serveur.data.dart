@@ -33,3 +33,8 @@ String urlAskCheck = baseUrl+"/api/artisan/project/";
 
 
 String urlAddAddress = baseUrl+"/api/artisan/updateAddress";
+
+
+String urlGetClient = baseUrl+"/api/artisan/client/";
+String urlGetClientPosts = baseUrl+"/api/artisan/post/client/";
+String urlComments = baseUrl+"/api/artisan/rating/client/";

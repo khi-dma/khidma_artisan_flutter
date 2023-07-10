@@ -141,6 +141,7 @@ class PreProjectController extends GetxController {
           checked: false,
           late: false));
       updatePriceEnablesSteps();
+      updateStepEndDate();
       titleController.clear();
       price = "1";
       duration = 1;
@@ -180,7 +181,6 @@ class PreProjectController extends GetxController {
       }
       project.price = price;
     }
-
     update();
   }
 

@@ -73,6 +73,8 @@ class ProjectModel {
         break;
       }
     }
+    print(json["commentClient"]);
+    print(json["commentArtisan"]);
     return ProjectModel(
         checked: json["checked"] ?? false,
         steps: steps,
@@ -172,7 +174,7 @@ class ProjectModel {
 
   @override
   String toString() {
-    return 'ProjectModel{id: $id,  price: $price, client: $client, artisan: $artisan, post: $post, startDate: $startDate, endDate: $endDate, checked: $checked, title: $title, state: $state}';
+    return 'ProjectModel{state: $state}';
   }
 }
 

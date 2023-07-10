@@ -15,6 +15,7 @@ class ProjectListController extends GetxController {
   getProjects() async {
     switchState();
     var res = await ProjectService.getProjects();
+    print(res.data);
     error.value = res.error;
     allProjects = res.data;
     splitLists();

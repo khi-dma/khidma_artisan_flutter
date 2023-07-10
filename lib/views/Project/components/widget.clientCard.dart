@@ -4,6 +4,8 @@ import 'package:khidma_artisan_flutter/models/model.client.dart';
 import 'package:khidma_artisan_flutter/models/model.user.dart';
 import 'package:sizer/sizer.dart';
 import '../../../constWidgets/cashedNetwork.dart';
+import '../../Client/widget.clientDetail.dart';
+import 'package:get/get.dart';
 
 Widget clientCard(ClientModel client) {
   return Column(
@@ -11,13 +13,18 @@ Widget clientCard(ClientModel client) {
     children: [
       Text(
         'Client',
-        style: TextStyle(fontSize: 13.sp,color: ThemeController.secondaryColor()),
+        style:
+            TextStyle(fontSize: 13.sp, color: ThemeController.secondaryColor()),
       ),
       SizedBox(height: 0.5.h),
       Card(
-        shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(9.sp)),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(9.sp)),
         margin: EdgeInsets.zero,
         child: ListTile(
+          onTap: () => Get.to(() => ClientDetailWidget(
+                client: client,
+              )),
           leading: ClipOval(
             child: cachedNetworkModel(client.profilePicture),
           ),
@@ -39,18 +46,19 @@ Widget artisanCard(UserModel artisan) {
     children: [
       Text(
         'Artisan',
-        style: TextStyle(fontSize: 13.sp,color: ThemeController.secondaryColor()),
+        style:
+            TextStyle(fontSize: 13.sp, color: ThemeController.secondaryColor()),
       ),
       SizedBox(height: 0.5.h),
       Card(
-        shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(9.sp)),
-
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(9.sp)),
         margin: EdgeInsets.zero,
         child: ListTile(
           leading: ClipOval(
             child: cachedNetworkModel(artisan.profilePicture),
           ),
-          title: Text(artisan.lastName +" "+  artisan.firstName),
+          title: Text(artisan.lastName + " " + artisan.firstName),
           subtitle: Text(
             "0" + artisan.phoneNumber.toString(),
             style: TextStyle(
@@ -61,4 +69,3 @@ Widget artisanCard(UserModel artisan) {
     ],
   );
 }
-

@@ -5,6 +5,10 @@ import 'package:khidma_artisan_flutter/services/service.auth.dart';
 import 'package:khidma_artisan_flutter/views/Auth/widget.phoneNumber.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
+import '../../views/BottomBar/widget.bottomBar.dart';
+import '../../views/Wrapper/widget.wrapper.dart';
+import '../Local/controller.local.dart';
+
 
 class CanceledIdentityController extends GetxController {
   RoundedLoadingButtonController logOutButtonController=RoundedLoadingButtonController();
@@ -36,9 +40,11 @@ class CanceledIdentityController extends GetxController {
   }
 
   logOut()async {
-    var res = await AuthService.logOut();
-    if(!res.error){
-      Get.offAll(()=>const LogInWidget());
-    }
+    LocalController.clear();
+    Get.deleteAll();
+
+    Get.offAll(() => const WrapperWidget());
+    logOutButtonController.stop();
+
   }
 }

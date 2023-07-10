@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:khidma_artisan_flutter/views/Comments/AddComment/widget.addComment.dart';
 import 'package:khidma_artisan_flutter/views/Project/FinishedProject/widgets/widget.projectDetails.dart';
 import 'package:khidma_artisan_flutter/views/Project/FinishedProject/widgets/widget.steps.dart';
 import 'package:sizer/sizer.dart';
@@ -48,7 +49,7 @@ class FinishedProjectWidget extends StatelessWidget {
                             visible: !project.commentClient,
                             child: button(
                               "Comment",
-                              () => print('cc'),
+                              () => Get.to(()=>AddCommentWidget(project: project)),
                             ),
                           ),
                           SizedBox(height: 3.h),

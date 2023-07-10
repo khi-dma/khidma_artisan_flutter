@@ -12,10 +12,10 @@ import '../../models/model.project.dart';
 class RatingCryptoController extends GetxController{
 
   ProjectModel project;
-  Map<String,int> ratings;
+  int rating;
   String comment;
 
-  RatingCryptoController({required this.project,required this.ratings,required this.comment});
+  RatingCryptoController({required this.project,required this.rating,required this.comment});
 
   final ethClient = Web3Client(
       'https://sepolia.infura.io/v3/d13837448f1c4c4b90b4e4d5c80a2550',
@@ -25,7 +25,7 @@ class RatingCryptoController extends GetxController{
   Future<DeployedContract> loadContract() async {
     String abiCode =
     await rootBundle.loadString("assets/contracts/abiRating.json");
-    String contractAddress = "0xeEaE65E56423FD9B6383f6A11ab8B3cd624e4e34";
+    String contractAddress = "0x8937b8639b1Bc86cA6dBB2197cef233Cd021B8F0";
 
     final contract = DeployedContract(ContractAbi.fromJson(abiCode, "khidmaRate"),
         EthereumAddress.fromHex(contractAddress));
@@ -39,7 +39,7 @@ class RatingCryptoController extends GetxController{
       final credentials =  EthPrivateKey.fromHex(
           "b89082196513e5918a12e1dc1d1de5aa07dbb6efdc46f4c6134f5cca0e295978");
       final contract = await loadContract();
-      final function = contract.function('rateClientArtisan');
+      final function = contract.function('rateArtisanClient');
       await ethClient.sendTransaction(
           credentials,
           Transaction.callContract(
@@ -50,17 +50,13 @@ class RatingCryptoController extends GetxController{
               EthereumAddress.fromHex(project.artisan.addressCrypto!),
               project.id,
               project.title,
-              BigInt.from(ratings["Respect deadlines"]!),
-              BigInt.from(ratings["Behavior"]!),
-              BigInt.from(ratings["Work perfection"]!),
-              BigInt.from(ratings["Project Size"]!),
+              BigInt.from(rating),
               comment
             ],
           ),
           chainId: 11155111
       );
     } catch (e) {
-      print(e);
       snackBarModel("Failed", e.toString(), true);
     }
   }

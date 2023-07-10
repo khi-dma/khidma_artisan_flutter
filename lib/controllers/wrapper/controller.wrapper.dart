@@ -17,7 +17,7 @@ class WrapperController{
     var state = LocalController.getState();
     switch(state){
       case 0:{
-        return LocalController.getProfile().addressCrypto==null? const MetaMaskWidget():const BottomBarWidget();
+        return LocalController.getProfile().addressCrypto==null || LocalController.getProfile().addressCrypto!.isEmpty ? const MetaMaskWidget():const BottomBarWidget();
       }
       case 2:{
         return const UploadIdentityWidget();

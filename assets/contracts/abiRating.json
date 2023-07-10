@@ -1,0 +1,408 @@
+[
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_client",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_artisan",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "_idProjet",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "_projectTitle",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_projectRating",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "_comment",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_newRating",
+        "type": "uint256"
+      }
+    ],
+    "name": "addRatingArtisanClientEvent",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_client",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_artisan",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "_idProjet",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "_projectTitle",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_starsTime",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_starsBehavior",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_starsPerfectWork",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_starsProjectSize",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "_comment",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_newRating",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_projectRating",
+        "type": "uint256"
+      }
+    ],
+    "name": "addRatingClientArtisanEvent",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_client",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_artisan",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_idProjet",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_projectTitle",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_projectRating",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_comment",
+        "type": "string"
+      }
+    ],
+    "name": "rateArtisanClient",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_client",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_artisan",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_idProjet",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_projectTitle",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_starsTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_starsBehavior",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_starsPerfectWork",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_starsProjectSize",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_comment",
+        "type": "string"
+      }
+    ],
+    "name": "rateClientArtisan",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getCommentsArtisanClient",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "client",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "artisan",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "idProjet",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "projectRating",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newRating",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "comment",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "projectTitle",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct khidmaRate.CommentArtisanClient[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getCommentsClientArtisan",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "client",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "artisan",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "idProjet",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "starsTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "starsBehavior",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "starsPerfectWork",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "starsProjectSize",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "projectRating",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newRating",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "comment",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "projectTitle",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct khidmaRate.CommentClientArtisan[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_address",
+        "type": "address"
+      }
+    ],
+    "name": "getMyRatingArtisan",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_address",
+        "type": "address"
+      }
+    ],
+    "name": "getMyRatingClient",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getRatings",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rating",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "typeUser",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct khidmaRate.Rating[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

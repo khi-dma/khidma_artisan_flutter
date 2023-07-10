@@ -99,8 +99,7 @@ class SignUpFirstPageWidget extends StatelessWidget {
                     SizedBox(
                       height: 7.h,
                     ),
-                    animatedButton("Next".tr, () => controller.toSecondPage(),
-                        controller.btnController),
+                    button("Next".tr, controller.toSecondPage)
                   ],
                 ),
               ),

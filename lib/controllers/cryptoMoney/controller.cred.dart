@@ -15,7 +15,7 @@ class WalletConnectEthereumCredentials extends CustomTransactionSender {
   @override
   Future<EthereumAddress> extractAddress() async {
     final controller = Get.find<WalletController>();
-    return EthereumAddress.fromHex(controller.connector.session.accounts[0]);
+    return EthereumAddress.fromHex(controller.account);
   }
 
   @override

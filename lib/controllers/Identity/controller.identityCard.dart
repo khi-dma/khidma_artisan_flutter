@@ -43,20 +43,22 @@ class IdentityCardController extends GetxController{
    var res = await  AuthService.uploadFiles(firstImagePath.value, secondImagePath.value);
    if(res.error){
      snackBarModel("Failed".tr, "Something went wrong", true);
+     uploadButtonController.stop();
    }else{
      LocalController.setState(3);
      snackBarModel("Success".tr, "Files uploaded", false);
+     uploadButtonController.stop();
+     Get.offAll(()=>const VerifyIdentity());
    }
-   uploadButtonController.stop();
-   Get.offAll(()=>const VerifyIdentity());
+
   }
 
   logOut()async {
-    var res = await AuthService.logOut();
-    if(!res.error){
-      Get.offAll(()=>const WrapperWidget());
+    LocalController.clear();
+    Get.deleteAll();
 
-    }
+    Get.offAll(() => const WrapperWidget());
+    logOutButtonController.stop();
   }
 
 }

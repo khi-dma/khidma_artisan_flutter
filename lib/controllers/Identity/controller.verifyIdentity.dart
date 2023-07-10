@@ -32,7 +32,7 @@ class VerifyIdentityController extends GetxController {
       LocalController.setState(res.state);
       LocalController.setProfile(res.data);
       if (res.state == 0) {
-        Get.offAll(() => const BottomBarWidget());
+        Get.offAll(() => const WrapperWidget());
       }else if(res.state == 4){
         Get.offAll(() => const WrapperWidget());
       }
@@ -40,10 +40,12 @@ class VerifyIdentityController extends GetxController {
     switchState();
   }
 
-  logOut()async {
-    var res = await AuthService.logOut();
-    if(!res.error){
-      Get.offAll(()=>const LogInWidget());
-    }
+  logOut() {
+    LocalController.clear();
+    Get.deleteAll();
+
+    Get.offAll(() => const WrapperWidget());
+    logOutButtonController.stop();
   }
+
 }

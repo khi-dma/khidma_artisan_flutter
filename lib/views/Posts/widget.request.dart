@@ -43,6 +43,7 @@ class RequestWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 3.h),
                 InputComponent(
+                  labelShow: false,
                   textEditingController: controller.requestController,
                   hintText:
                       'please provide the important information such the time , price , if u have already worked the same work ... ',
